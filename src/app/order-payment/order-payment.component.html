@@ -1,0 +1,160 @@
+<app-header></app-header>
+<div class="containerPlaceOrderBG">
+	<div class="containerPlaceOrderContent" [class.loading]="showloader">
+		<div class="modal1"></div>
+		<div class="row">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10 placeOrderPageTitleContainer">
+					<h2 class="pageSubTitle">
+						Calculate Shipping Cost
+					</h2>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-1">&nbsp;</div>
+			<div class="col-lg-8 col-md-10">
+		<form [formGroup]="orderForm" novalidate>
+<div class="viewOrderPageContent" formArrayName="orderShipping" style="margin-top:-50px; min-height: auto">
+                                <div class="row tableList">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <th >RECIPIENT
+                                                       <!--(click)="sort('firstName')" <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'firstName' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'firstName' && isDesc),
+                        'glyphicon-sort disabled': (column != 'firstName')}"
+    aria-hidden="true"> </i>-->
+</th>
+                                                        <th width="250">SHIP ADDRESS</th>
+                                                        <th width="100">SHIP METHOD</th>
+														<th>COST</th>
+														<th>QTY</th>
+                                                        <th>
+                                                        <!-- (click)="sort('shipmentDate')"<i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'shipmentDate' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'shipmentDate' && isDesc),
+                        'glyphicon-sort disabled': (column != 'shipmentDate')}"
+    aria-hidden="true"> </i> -->DELIV. DATE</th>
+                                                    </tr>
+                                                   <tr *ngFor="let shipping of orderForm.get('orderShipping')['controls'] | paginate: { itemsPerPage: 10, currentPage: p}; let k=index;" [formGroupName]="(p-1)*10+k">
+                                                        <td>{{shipping.value.firstName}}</td>
+                                                        <td>{{shipping.value.address1}}{{shipping.value.address2}}</td> 
+                                                        <td>
+                                                        	<select formControlName="deliveryType" (change)="onChangeShippingMethod($event.target.value,shipping.value,((p-1)*10+k))">
+                                                        		<option value="">Select</option>
+                                                        		<option value="fedex_first_overnight">fedex_first_overnight</option>
+                                                        		<option value="fedex_priority_overnight">fedex_priority_overnight</option>
+                                                        		<option value="fedex_standard_overnight">fedex_standard_overnight </option>
+                                                        		<option value="fedex_2day">fedex_2day</option>
+                                                        		<option value="fedex_ground">fedex_ground</option>
+															</select>
+															<br>
+															<span style="color:red">{{shipping.value.errorMessage}} </span>
+                                                        </td>
+                                                        <td>$ {{(shipping.value.shipmentCost).toFixed(2)}}
+														</td>
+														<td>{{shipping.value.quantity}}</td>
+                                                        <td>{{shipping.value.deliveryDate | date: 'MM/dd/yyyy'}}</td>
+                                                    </tr>
+                                                </table>
+                                </div>
+                                <div class="row">
+	                                <div class="col-md-8">
+			                            <pagination-controls (pageChange)="pageChanged($event)" previousLabel=""
+			                      nextLabel=""></pagination-controls>
+			                        </div>
+		                    	</div>
+                          </div>
+                         </form>
+
+                          <div class="row">
+				<div class="col-lg-8 col-md-10 placeOrderPageTitleContainer">
+					<h2 class="pageSubTitle">
+						Order Summary
+					</h2>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+
+
+                 <div class="row">
+				<div class="col-md-12 shippingBlk">
+					<div class="row">
+						<div class="col-lg-7">SUBTOTAL:</div>
+						<div class="col-lg-2 text-right">${{this.orders.orderPrice}}</div>
+					</div>					
+					<div class="row">
+						<div class="col-lg-7">DISCOUNTED PRICE:</div>
+						<div class="col-lg-2 text-right">-${{this.orders.discountedPrice}}</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7">TAX:</div>
+						<div class="col-lg-2 text-right">${{this.orders.taxAmount}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7">ESTIMATED SHIPPING COST:</div>
+						<div class="col-lg-2 text-right">+ ${{(this.totalShippingCost).toFixed(2)}}</div>
+					</div>
+					<div class="row border">
+						<div class="col-lg-7">TOTAL ORDER PRICE:</div>
+						<div class="col-lg-2 text-right">${{(this.orders.orderPrice-this.orders.discountedPrice+this.orders.taxAmount+this.totalShippingCost).toFixed(2)}}</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+			
+</div>
+</div>
+<div class="row placeOrderActionBar">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10">
+					<div class="row pull-right">
+						<div class="col-lg-12 col-md-12">
+							<button id="btnSaveOrder" name="btnSaveOrder" (click)="placeorder(1,1)" *ngIf="orderStatusId==1" class="btn">BACK</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<button id="btnSaveOrder" name="btnSaveOrder" (click)="placeorder(2,1)" *ngIf="orderStatusId!=1" class="btn">BACK</button>
+							&nbsp;&nbsp;&nbsp;&nbsp;
+							<button id="btnPlaceOrder" name="btnPlaceOrder" class="btn"
+								(click)="placeorder(1,0)" *ngIf="orderStatusId==1">SAVE ORDER</button>
+								&nbsp;&nbsp;&nbsp;&nbsp;
+							<button id="btnPlaceOrder" name="btnPlaceOrder" class="btn"
+								(click)="placeorder(2,0)">PLACE ORDER</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+</div>
+</div>
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessagePlaced">
+      		<div class="modal-dialog">
+        		<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" (click)="hideMessage(2)">X</button>
+						<h4 class="modal-title">Success Message</h4>
+					</div>
+					<div class="modal-body">
+						<p><i class="material-icons alert-success">check_circle</i> Your order has been successfully Placed.Go to <a routerLink='/view' routerLinkActive='active'>View Orders</a> to check your orders
+						</p>
+					</div>
+             	</div>
+        	</div>
+		</div>
+		<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessageSaved">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="hideMessage(1)">X</button>
+            <h4 class="modal-title">Success Message</h4>
+          </div>
+          <div class="modal-body">
+           <p><i class="material-icons alert-success">check_circle</i> Your order has been successfully saved as Draft.
+            </p>
+          </div>
+          </div>
+      </div>
+</div>

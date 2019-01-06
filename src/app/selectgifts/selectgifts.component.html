@@ -1,0 +1,35 @@
+<app-header [isCart]="isCart" [itemCount]="itemCount"></app-header>
+<div class="containerGiftItemsBG">
+	<div class="ContainerGiftItemsContent">
+		<div class="row giftItemsListRow">
+				<!-- <mat-grid-list cols="4" rowHeight="400px"> -->
+					<div class="col-lg-2 col-md-3" *ngFor="let product of products | paginate: { itemsPerPage: 12, currentPage: p }; let i=index;">
+				<div class="giftItem">
+					<div class="giftItemCardOuter">
+						<div class="card text-center giftItemCard">
+							<div class="card-header giftItemCardImageCenter">
+								<img src="{{_imageURL}}{{product.itemImage}}?lastmod={{timeStamp}}" alt="{{product.name}}"
+									class="img-responsive giftItemsImage" />
+							</div>
+							<div class="card-body">
+								<span class="card-title giftItemTitle">{{product.name}}
+								</span><br /> <span class="card-title giftItemTitle">__</span>
+							</div>
+							<div class="card-footer text-muted giftItemPrice">$ {{product.price.toFixed(2)}}</div>
+							<input type="button" class="btn btnGiftItemAddToCart" value="ADD TO CART" (click)="addToCart(product.itemId,product.orderId)"/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="row m-0">
+                        <div class="col-lg-12 col-md-12">
+                            <pagination-controls (pageChange)="p = $event" previousLabel=""
+                      nextLabel=""></pagination-controls>
+                        </div>
+            </div>
+</div>
+
+<app-footer></app-footer>

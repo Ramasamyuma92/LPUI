@@ -1,0 +1,198 @@
+<app-header></app-header>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div class="containerBG">
+  <div class="ContainerContent">
+    <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12">
+              <h1 class="pageTitle">Create Recipient</h1>
+          </div>
+      </div>
+        	
+        	<form [formGroup]="recForm" (ngSubmit)="addPost(recForm.value)" class="p-40">
+            
+            <div class="row createOrganizationPageContent">
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">First Name*</span>
+                    <input type="text" class="txtLarge" placeholder="First Name" formControlName="firstName" />
+                    <div *ngIf="recForm.controls.firstName.invalid && recForm.controls.firstName.touched" class="text-right text-danger">First Name is required!</div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Last Name</span>
+                    <input type="text" class="txtLarge" placeholder="Last Name" formControlName="lastName" />                    
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Email</span>
+                    <input type="text" class="txtLarge" placeholder="Email" formControlName="email" />
+                </div>
+            </div>
+
+            <div class="row createOrganizationPageContent">
+          <div class="col-lg-6 col-md-6">
+              <span class="createOrganizationLabel">Address Line 1*</span>
+              <input type="text" class="txtLarge" placeholder="Address Line 1" formControlName="address1" />
+              <div *ngIf="recForm.controls.address1.invalid && recForm.controls.address1.touched" class="text-right text-danger">Address is required!</div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+              <span class="createOrganizationLabel">Address Line 2</span>
+              <input type="text" class="txtLarge" placeholder="Address Line 2" formControlName="address2" />
+          </div>
+      </div>
+
+      <div class="row createOrganizationPageContent">
+          <div class="col-lg-4 col-md-4">
+              <span class="createOrganizationLabel">City*</span>
+             <input type="text" class="txtLarge" placeholder="City" formControlName="city" />
+             <div *ngIf="recForm.controls.city.invalid && recForm.controls.city.touched" class="text-right text-danger">City is required!</div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+              <span class="createOrganizationLabel">State*</span>
+           <select class="txtLarge" max=2 formControlName="state">
+                <option value="">Select</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+              </select>
+           <div *ngIf="recForm.controls.state.invalid && recForm.controls.state.touched" class="text-right text-danger">State is required!</div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+              <span class="createOrganizationLabel">Country*</span>
+             <input type="text" class="txtLarge" placeholder="Country" readyonly formControlName="country" disabled=true />
+          </div>
+      </div>
+
+            <div class="row createOrganizationPageContent">
+                <!--div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Organization</span><br />
+                    <select id="drpCustomMessage" name="drpCustomMessage" class="createEmployeePageDropdown" formControlName="clientId" [disabled]="disabled">
+                                <option value={{client.clientId}} *ngFor="let client of clients">{{client.clientName}}</option>
+                            </select>
+                </div-->
+            <div class="col-lg-4 col-md-4">
+              <span class="createOrganizationLabel">Zip Code*</span>
+              <input type="text" class="txtLarge" placeholder="Zip Code" formControlName="zip" />
+              <div *ngIf="recForm.controls.zip.invalid && recForm.controls.zip.touched" class="text-right text-danger">Zip Code is required!</div>
+          </div>
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Phone Number</span>
+                    <input type="text" class="txtLarge" placeholder="Phone Number" formControlName="phone1" />
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Mobile Number</span>
+                    <input type="text" class="txtLarge" placeholder="Mobile Number" formControlName="phone2" />
+                </div>
+            </div>
+
+            <div class="row createOrganizationPageContent">
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Date of Birth</span>
+                        <!--i class="glyphicon glyphicon-calendar icoCalendar"></i-->
+                        <!--input type="text" class="form-control txtLarge" placeholder="Select" formControlName="dateOfBirth"-->
+                        <input type="text" readonly id="txtCalendar"
+									 placeholder="mm/dd/yyyy"
+                  class="txtLarge" #dpYMD="bsDatepicker" bsDatepicker [maxDate]="maxDate" [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY',showWeekNumbers:false}" name="txtCalendar"
+									formControlName="dateOfBirth"
+									value='' autocomplete="off" placement="top"/>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <span class="createOrganizationLabel">Date of Joining</span>
+                        <input type="text" readonly id="txtCalendar"
+									 placeholder="mm/dd/yyyy"
+                  class="txtLarge" #dpYMD="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY',showWeekNumbers:false}" name="txtCalendar"
+									formControlName="dateOfJoining"
+									value='' autocomplete="off" placement="top"/>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    &nbsp;
+                </div>
+            </div>
+
+            <div>
+                <div class="col-lg-6 col-md-6">
+                    &nbsp;
+                </div>
+                <div class="col-lg-6 col-md-6 pull-right createOrganizationActionButtons">
+                    <input type="button" value="CANCEL" class="btn" (click)="redirectToPreviousPage()"/>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="SUBMIT" class="btn" />
+                </div>
+            </div>
+                </form>
+        </div>
+    </div>
+
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessageSaved">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="closeMessage()">X</button>
+            <h4 class="modal-title">Success Message</h4>
+          </div>
+          <div class="modal-body">
+            <p><i class="material-icons alert-success">check_circle</i> Recipient created successfully.
+            </p>
+          </div>
+          </div>
+      </div>
+</div>
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="errorExists">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="closeMessage()">X</button>
+            <h4 class="modal-title">Error Message</h4>
+          </div>
+          <div class="modal-body">
+            <p><i class="material-icons alert-danger">error</i> {{errorMessage}}
+            </p>
+          </div>
+          </div>
+      </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,124 @@
+<app-header></app-header>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="containerBG">
+  <div class="ContainerContent">
+            <div class="row">
+          <div class="col-lg-12 col-md-12 pull-left">
+              <h1 class="pageTitle">View Organization</h1>
+          </div>
+      </div>
+
+            <div class="row viewOrderPageContent">
+                <div class="col-lg-12 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4">
+                            <select id="drpCustomMessage" name="drpCustomMessage" class="viewOrderDropdown" [(ngModel)]="clientName">
+                                <option value="" selected>Select Organization</option>
+                                <option value={{client.clientName}} *ngFor="let client of clients">{{client.clientName}}</option>
+                            </select>
+                            
+                        </div>
+                    </div>
+
+                    <div class="row tableList">
+                        <div class="col-lg-12 col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sort('clientName')">ORGANIZATION NAME <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'clientName' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'clientName' && isDesc),
+                        'glyphicon-sort disabled': (column != 'clientName')}"
+    aria-hidden="true"> </i></th>
+                                        <th (click)="sort('primaryContactFirstName')">CONTACT NAME <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'primaryContactFirstName' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'primaryContactFirstName' && isDesc),
+                        'glyphicon-sort disabled': (column != 'primaryContactFirstName')}"
+    aria-hidden="true"> </i></th>
+                                        <th (click)="sort('primaryContactEmail')">CONTACT EMAIL <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'primaryContactEmail' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'primaryContactEmail' && isDesc),
+                        'glyphicon-sort disabled': (column != 'primaryContactEmail')}"
+    aria-hidden="true"> </i></th>
+                                        <th (click)="sort('primaryContactPhone1')">CONTACT NUMBER <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'primaryContactPhone1' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'primaryContactPhone1' && isDesc),
+                        'glyphicon-sort disabled': (column != 'primaryContactPhone1')}"
+    aria-hidden="true"> </i></th>
+                                        <th class="text-center">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let client of clients | searchOrgFilter: { clientName:clientName } | orderBy: {property: column,direction: direction} | paginate: { itemsPerPage: 10, currentPage: p };let i = index" >
+                                        <td>{{client.clientName}}</td>
+                                        <td>{{client.primaryContactFirstName}}</td>
+                                        <td>{{client.primaryContactEmail}}</td>
+                                        <td>
+                                            {{client.primaryContactPhone1}}                                        
+                                        </td>
+                                        <td class="editOrder">
+                                            <div>
+                                            <a title="Edit Organization" routerLink='/organization/edit/{{client.clientId}}' routerLinkActive='active'>
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                            </a>
+                                            </div>
+                                            <div>
+                                            <a title="Edit Recipients" routerLink='/recipientlist/{{client.clientId}}' routerLinkActive='active'><!--span class="glyphicon glyphicon-edit"></span-->
+                                                <i _ngcontent-c3="" alt="edit recipients" class="material-icons">person</i>
+                                            </a>
+                                            </div>
+                                            <div>
+                                                <i class="material-icons view" alt="Delete Organization" (click)="deletePopup(i)">delete</i></div>
+                                        </td>
+                                        <div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="deleteConfirm==i">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" (click)="closeMessage()">X</button>
+                                                    <h4 class="modal-title">Delete Confirmation</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p>Are you sure you want to delete Organization: <strong>"{{client.clientName}}"</strong> ?
+                                                    </p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                   <button class="btn" (click)="closeMessage()">No</button>
+                                                   <button class="btn" (click)="deleteOrganisation(i,client.clientId)">Yes</button>
+                                                  </div>
+                                                  </div>
+                                              </div>
+                                        </div>
+
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-lg-12 col-md-12">
+                            <pagination-controls (pageChange)="p = $event" previousLabel=""
+                      nextLabel=""></pagination-controls>
+                        </div>
+                    </div>
+                    <!--div class="row viewOrderNavigation">
+                        <div class="col-lg-12 col-md-12 viewOrderNavigationButtons">
+                            <div class="divBtnNavigationArrow"><i class="material-icons">arrow_left</i></div>
+                            <div class="divBtnNavigationNumbers">1</div>
+                            <div class="divBtnNavigationNumbers">2</div>
+                            <div class="divBtnNavigationNumbers">3</div>
+                            <div class="divBtnNavigationNumbers">4</div>
+                            <div class="divBtnNavigationArrow"><i class="material-icons">arrow_right</i></div>
+                        </div>
+                    </div-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+ 

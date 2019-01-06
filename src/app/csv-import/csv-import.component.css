@@ -1,0 +1,279 @@
+/*Import*/
+.containerImportBG{
+    background-color:#F8F8F6;    
+    height:85%;
+    display:flex;
+    justify-content:center;
+    overflow:auto;
+}
+
+.ContainerImportContent{
+    width:83%;
+}
+
+.importPageHeader{
+    padding:5px 0px 5px 0px;
+}
+
+.importPageContent{
+     padding-top:20px;
+     margin-left: -15px;
+     margin-bottom:10px;
+}
+
+.importPageContentAction{
+    margin-left:0px;
+    margin-right: -45px;
+}
+
+.importPageContentTabContainer{
+    margin-left: 15px;
+    padding-left: 0px;
+    padding-right:0px;
+    box-shadow:initial;
+    min-height: 400px;
+}
+
+.importPageContent .tab-content{
+    border-top:solid 1px #cbe9df;
+    min-height:300px;
+    padding:10px 15px 10px 15px;    
+}
+
+.importPageContent .nav-tabs>li>a {
+    margin-right: 3px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    background-color: #CCCCCC;
+    color: #6C6867;
+    font-weight:bold;
+}
+
+.importPageContent .nav-tabs>li.active>a, .importPageContent .nav-tabs>li.active>a:focus, .importPageContent .nav-tabs>li.active>a:hover {
+    color: #555;
+    background-color: #F4EEEE;
+    border: 1px solid #CCCCCC;
+    border-bottom-color: transparent;
+    margin-right:3px;
+}
+
+.importPageContent .tabUploadContentLabel{
+    color: #6C6867;
+    font-weight:600;
+    line-height:2;
+}
+
+.modal1 {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+.loading .modal1 {
+    display: block;
+}
+
+.importPageContent .tabUploadLeftPadding{
+    padding-left:50px;
+}
+
+.importPageContent .tabUploadContentUL{
+    padding-left:50px;
+}
+
+.btnImportPageBrowse, .btnImportPageBrowse:hover{
+    border-bottom:solid 0px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:40px;
+    width:170px;
+    font-weight:600;
+    margin-left:30px;
+    font-size:16px;
+    font-weight:normal;
+}
+.mat-tab-label{
+    font-family: "Brown","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #CCCCCC;
+    font-weight:bold;
+    color:#6C6867;
+}
+.mat-tab-group{
+    font-family: "Brown","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size:14px;
+}
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background:#F4EEEE !important;
+}
+.mat-tab-label-active{
+    background-color: #F4EEEE !important;
+    font-weight:bold;
+}
+table {
+    border: solid 1px #cbe9df;
+}
+
+table tr th, table tr td {
+    border-bottom: solid 1px #cbe9df;
+    font-size: 15px;
+    font-weight: normal;
+    padding-left: 15px;
+}
+
+table tr th {
+    background-color: #15504e;
+    color: #FFF;
+}
+
+table tr td {
+    color: #15504e;
+}
+
+table tr th, table tr td {
+    border-right: solid 1px #cbe9df;
+}
+
+table tr th:last-child, table tr td:last-child
+{
+    border-right: solid 1px #cbe9df;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #FFF;
+}
+
+.table-striped>tbody>tr:nth-of-type(even) {
+    background-color: #cbe9df;
+}
+
+.file-upload{
+  position:relative;
+  text-align:center;
+  cursor:pointer;
+  clear: both
+}
+.file {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    font-size: 24px;
+    width: 100%;
+}
+.file-upload:after{
+    content: "Choose file";
+}
+/*End Import */
+.upload-container h2.pageSubTitle{
+    border-bottom: 1px solid #cbe9df;
+    margin-bottom: 0;
+    padding: 30px 0 10px 0;
+
+}
+.upload-container .content{
+    margin-top:10px;
+}
+.upload-container .content p{
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+.upload-container .content ul{
+    margin-bottom: 30px;
+}
+.upload-container .content li{
+    letter-spacing: 0.5px;
+    line-height: 25px;
+}
+.upload-header ul{
+    clear: both;
+    padding: 0;
+    cursor:pointer;
+}
+.upload-header ul li{
+    list-style: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 17px;
+    letter-spacing: 2px;
+    width: 33%;
+    opacity: 0.65;
+
+}
+.upload-header ul li.active{
+    opacity: 1;
+}
+.upload-header ul li span {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #15504e;
+    text-align: center;
+    padding: 5px 0 0;
+    color: #fff;
+}
+.upload-header ul li:after{
+    content: "";
+    border: 1px solid #15504e;
+    width: 74%;
+    float: right;
+    margin: 17px 10px 0 10px;
+}
+.nxtButton {
+    margin-top: 30px;
+    border-top: 1px solid #cbe9df;
+}
+.upload-content table tr th,.upload-content table tr td{
+    border-right: solid 1px #f8f8f6;
+    padding: 10px;
+    /* word-break: break-all; */
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+.upload-content table tr th {
+    padding: 5px 10px;
+    color: #cbe9df;
+    letter-spacing: 1px;
+
+}
+.upload-content .tableList {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+.uploadFile {
+    display: flex;
+    align-items: center;
+    height: 150px;
+    text-align: center;
+    align-content: center;
+    border: 1px dashed #cbe9df;
+    padding: 20px;
+    width: 60%;
+    justify-content: center;
+    align-content: center;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: #cbe9df5c;
+}

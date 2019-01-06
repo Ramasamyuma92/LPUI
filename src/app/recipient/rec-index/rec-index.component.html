@@ -1,0 +1,106 @@
+<app-header></app-header>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div class="containerViewOrderBG">
+        <div class="ContainerViewOrderContent recipient">
+            <div class="row viewOrderPageHeader">                
+                <div class="col-lg-12 col-md-12 pull-left">
+                    <h2 class="pageSubTitle">View Recipients
+                    <button class="btn btnRec pull-right" *ngIf="" routerLink='/recipient/create/{{organizationId}}' routerLinkActive='active'><span class="glyphicon glyphicon-plus"></span> Create New</button>
+                    <span title="create recipient" class="material-icons pull-right add-icon" routerLink='/recipient/create/{{organizationId}}' routerLinkActive='active'>person_add</span>
+                    </h2>
+
+                </div>
+            </div>
+
+            <div class="row viewOrderPageContent">
+                <div class="col-lg-12 col-md-12">
+                    <div class="row tableList">
+                        <div class="col-lg-12 col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th (click)="sort('firstName')">RECIPIENT NAME <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'firstName' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'firstName' && isDesc),
+                        'glyphicon-sort disabled': (column != 'firstName')}"
+    aria-hidden="true"> </i></th>
+                                        <th (click)="sort('email')">EMAIL <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'email' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'email' && isDesc),
+                        'glyphicon-sort disabled': (column != 'email')}"
+    aria-hidden="true"> </i></th>
+                                        <th (click)="sort('phone1')">PHONE <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'phone1' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'phone1' && isDesc),
+                        'glyphicon-sort disabled': (column != 'phone1')}"
+    aria-hidden="true"> </i></th>
+                                        <th (click)="sort('dateOfBirth')">DOB <i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'dateOfBirth' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'dateOfBirth' && isDesc),
+                        'glyphicon-sort disabled': (column != 'dateOfBirth')}"
+    aria-hidden="true"> </i></th>
+                                        <th class="text-center">ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let recipient of recipients | orderBy: {property: column,direction: direction} | paginate: { itemsPerPage: 10, currentPage: p }; let i=index;" >
+                                        <td>{{recipient.firstName}} {{recipient.lastName}}</td>
+                                        <td>{{recipient.email}}</td>
+                                        <td>{{recipient.phone1}}</td>
+                                        <td>
+                                            {{recipient.dateOfBirth | date: 'MM/dd/yyyy'}}
+                                        </td>
+                                        <td class="editOrder">
+                                            <div><a routerLink='/recipient/edit/{{recipient.recipientId}}' routerLinkActive='active'><span class="glyphicon glyphicon-edit"></span></a></div>
+                                            <div>
+                                                <i class="material-icons view" alt="Delete Recipient" (click)="deletePopup(i)">delete</i>
+                                            </div>
+                                        </td>
+                                        <div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="deleteConfirm==i">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <button type="button" class="close" (click)="closeMessage()">X</button>
+                                                    <h4 class="modal-title">Delete Confirmation</h4>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    <p *ngIf="!isPrimary">Are you sure you want to delete Recipient: <strong>"{{recipient.firstName}} {{recipient.lastName}}"</strong> ?
+                                                    </p>
+                                                    <p *ngIf="isPrimary">Primary Recipient cannot be Deleted
+                                                    </p>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                   <button class="btn" (click)="closeMessage()">
+                                                   {{isPrimary?'OK':'NO'}}</button>
+                                                   <button *ngIf="!isPrimary" class="btn" (click)="deleteRecipient(i,recipient.clientId,recipient.recipientId,recipient.email)">Yes</button>
+                                                  </div>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                    </tr>
+                                    <tr *ngIf="recipients.length == 0">
+                                        <td colspan="5" style="text-align: center"> No Records Found</td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row m-0">
+                        <div class="col-lg-12 col-md-12" *ngIf="recipients.length > 0">
+                            <pagination-controls (pageChange)="p = $event" previousLabel=""
+                      nextLabel=""></pagination-controls>
+                        </div>
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+ 

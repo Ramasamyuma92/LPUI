@@ -1,0 +1,105 @@
+.containerGiftItemsBG{
+    background-color:#F8F8F6;
+    overflow-x: hidden;
+}
+
+.ContainerGiftItemsContent{
+    width:98%;
+}
+
+.giftItemsListRow{
+    padding-top:40px;
+}
+
+.giftItem{
+    padding:10px;
+    min-height:340px;
+    transition: all 0.5s linear;
+}
+
+.giftItem:hover {
+    height:350px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+}
+.giftItemCardOuter:hover{
+    border:solid 1px #cbe9df;
+}
+.giftItemCardOuter {
+    height:330px;
+    border: 1px solid #f8f8f6;
+    transition: border-color 0.5s linear;
+}
+
+.giftItemBoxShadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+}
+
+.giftItemCardOuterBorder{
+    height:340px;
+    border:solid 1px #15504e;
+}
+
+.giftItemCard{    
+    padding-bottom:20px;
+    cursor:pointer;
+}
+
+.giftItemCard .card-body{
+    padding-top:10px;
+
+}
+
+.giftItemCard .card-footer{
+    padding-top:10px;
+    padding-bottom:15px;
+}
+
+.giftItemCardImageCenter{    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.giftItemsImage{
+	height:151px;
+	width:189px;
+    
+}
+
+.giftItemTitle{
+    padding-top:8px;
+    color:#15504e;
+    font-size: 14px;
+    font-weight:bold;
+    font-family:"Brown","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.giftItemPrice{
+   font-family:"Lyon",serif;	
+   font-size:16px;	
+}
+
+.btnGiftItemAddToCart, .btnGiftItemAddToCart:hover{
+    border-bottom:solid 0px #cbe9df;
+    background-color:#15504ede;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    font-weight:600;
+    padding: 10px;
+}
+.btnGiftItemAddToCart{
+    letter-spacing: 2px;
+    opacity: 0;
+    transition: opacity 1s linear;
+
+}
+
+.giftItem:hover .btnGiftItemAddToCart{
+    opacity: 1;
+}
+.btnGiftItemAddToCart:hover{
+    background-color: #15504e;
+}

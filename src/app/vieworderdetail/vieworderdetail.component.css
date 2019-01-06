@@ -1,0 +1,14 @@
+.shippingBlk {
+	padding: 20px;
+    border: solid 1px #15504e;
+    line-height: 32px;
+    font-size: 16px;
+    color: #15504e;
+    letter-spacing: 1px;
+}
+.shippingBlk .border{
+	    border-top: 1px solid #ccc;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px
+}

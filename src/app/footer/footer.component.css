@@ -1,0 +1,12 @@
+.footerBG {
+	background-color: #155048;
+	height: 7%;
+	display: flex;
+	align-items: center;
+}
+
+.footerContent {
+	color: #FFFFFF;
+	text-align: left;
+	padding-left: 20px;
+}

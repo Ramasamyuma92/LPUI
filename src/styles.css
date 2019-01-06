@@ -1,0 +1,1348 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap3/dist/css/bootstrap.min.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+/*Font*/
+@font-face {
+	font-family: Lyon;
+	src: url("/assets/fonts/LyonText-Regular.otf") format("opentype")
+}
+
+body {
+	overflow-x:hidden;
+}
+
+a {
+	color:#15504e;
+}
+a:focus, a:hover{
+	text-decoration: none;
+}
+@font-face {
+	font-family: Lyon;
+	src: url("/assets/fonts/LyonText-RegularItalic.otf") format("opentype");
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Brown;
+	src: url("/assets/fonts/Brown-Light.otf") format("opentype");
+	font-weight: 300;
+}
+
+@font-face {
+	font-family: Brown;
+	src: url("/assets/fonts/Brown-Regular.otf") format("opentype");
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: Brown;
+	src: url("/assets/fonts/Brown-Regular-Italic.otf") format("opentype");
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: Brown;
+	src: url("/assets/fonts/Brown-Bold.otf") format("opentype");
+	font-weight: bold;
+}
+/*Font - end*/
+
+/*Common*/
+body, html {
+	height: 100%;
+	font-family: "Brown", "HelveticaNeue", "Helvetica Neue", Helvetica,
+		Arial, sans-serif;
+	font-size: 14px;
+}
+
+.afterloginlogo {
+	margin-left: 20px !important;
+	margin-bottom: 10px;
+}
+
+.afterloginlogo img {
+	height: 84px;
+    margin-top: -26px;
+}
+/*End Common*/
+
+/*Login Page*/
+.bg {
+	background-image: url("/assets/images/login_bg.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.loginContainer {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.loginContainerContent {
+	text-align: center;
+	margin-top: 245px;
+}
+
+.loginlogo {
+	margin-bottom: 20px;
+}
+
+.logoText {
+	color: rgb(185, 122, 87);
+	font-size: 35px;
+}
+
+.btn-primary, .btn-primary:hover,.btn-primary[disabled],.btn-primary[disabled]:hover{
+	border-color: rgb(0,80,81);
+	background-color: rgb(0,80,81);
+	color: #B4E0D8;
+	border-radius: 0px;
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+.loginContainer .btn-primary{
+	height: 60px;
+	width: 400px;
+}
+
+.linkForgotPassword{
+	color: #fff;
+	text-decoration: none;
+	line-height: 30px;
+	letter-spacing: 1px;
+	text-decoration: underline;
+}
+.linkForgotPassword:hover{
+	color: #c6dbda;
+
+}
+/*End Login*/
+
+/*Select Organization*/
+.containerBG {
+	background-color: #F8F8F6;
+	display: flex;
+	justify-content: center;
+}
+
+.ContainerContent {
+	width: 97%
+}
+
+.pageTitle {
+    color:#15504e;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: #fff;
+    padding: 17px;
+    margin: 1px -20px;
+    text-align: center;
+}
+
+.pageSubTitle {
+	color:#15504e;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    padding: 20px 10px;
+    margin: 0;
+}
+.organizationSelectedImage {
+	font-size: 35px;
+	color: red;
+	z-index: 2;
+	position: relative;
+	right: -180px;
+	top: -10px;
+}
+
+.organizationUnSelectedImage {
+	font-size: 35px;
+	z-index: 2;
+	position: relative;
+	right: -180px;
+	top: -10px;
+	color: transparent;
+}
+
+.organizationImage {
+	border: solid 1px #15504e;
+	cursor: pointer;
+	margin-top: -50px;
+	z-index: 1;
+}
+
+.organizationListAction {
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+@media ( min-width : 992px) {
+	.organizationBtnPadding {
+		padding-left: 30px;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.organizationBtnPadding {
+		padding-left: 20px;
+	}
+}
+
+.btn1, .btn1:hover {
+	border-bottom: solid 4px #cbe9df;
+	background-color: #15504e;
+	color: #FFFFFF;
+	border-radius: 0px;
+	height: 50px;
+	width: 130px;
+	font-weight: 600;
+}
+
+.footerBG {
+	background-color: #155048;
+	height: 7%;
+	display: flex;
+	align-items: center;
+}
+
+.footerContent {
+	color: #FFFFFF;
+	text-align: left;
+	padding-left: 20px;
+}
+/*End Organization*/
+
+
+/* Place Order */
+.containerPlaceOrderBG {
+	background-color: #F8F8F6;
+}
+
+.containerPlaceOrderContent {
+	width: 98%;
+}
+
+.placeOrderPageTitleContainer {
+	padding-left: 0px;
+}
+
+.placeOrderListRow {
+	padding-top: 12px;
+}
+
+.placeOrderListRowContent {
+	border: solid 1px #15504e;
+}
+
+.placeOrderGiftItem {
+	padding: 30px 10px 10px 10px;
+}
+
+.placeOrderGiftItemCard {
+	padding-bottom: 20px;
+	cursor: pointer;
+}
+
+.placeOrderGiftItemCardImageCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.placeOrderGiftItemTitle {
+	padding-top: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform:UPPERCASE;
+}
+
+.placeOrderGiftItemCard .card-body {
+	padding-top: 10px;
+}
+
+.placeOrderGiftItemCard .card-footer {
+	padding-top: 10px;
+}
+
+.placeOrderDropdown {
+	background-color: #F8F8F6;
+	border-color: #15504e;
+	border-radius: 3px;
+	margin: 20px 5px 0px 5px;
+	padding: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: 600;
+	width: 400px;
+}
+
+.placeOrderTextarea {
+	background-color: #FFFFFF;
+	border-color: #15504e;
+	border-radius: 3px;
+	margin: 12px 5px 20px 5px;
+	padding: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: 600;
+	width: 400px;
+	resize: none;
+}
+
+.placeOrderGiftItemSubTitle {
+	padding: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.placeOrderTextbox {
+	background-color: #FFFFFF;
+	border: solid 1px #15504e;
+	border-radius: 3px;
+	margin: 5px 5px 20px 5px;
+	padding: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: 600;
+	width: 250px;
+	text-align: center;
+}
+.placeOrderTextbox.has-error,.btnPlaceOrderAddEditRecipients.has-error {
+	border: solid 1px red;
+}
+.error,.error:focus {
+	border: solid 1px red;
+	outline: none;
+}
+.required{
+	color: red;
+	font-weight: normal;
+}
+
+
+.btnPlaceOrderAddEditRecipients {
+	border: none;
+	background-color: #155048ed;
+    color: #FFFFFF;
+    border-radius: 0px;
+    height: 40px;
+    width: 185px;
+    font-weight: 600;
+    border: 0;
+    outline: none;
+    letter-spacing: 1px;
+}
+.btnPlaceOrderAddEditRecipients:hover {
+	background-color: #155048;
+	color:#B4E0D8
+}
+
+
+.divMinusCircle {
+	border-radius: 50%;
+	background-color: #15504e;
+	width: 30px;
+	height: 30px;
+	float: left;
+	text-align: center;
+	padding-top: 4px;
+	font-weight: bold;
+	color: #FFFFFF;
+	margin-top: 8px;
+}
+
+.divPlusCircle {
+	border-radius: 50%;
+	background-color: #15504e;
+	width: 30px;
+	height: 30px;
+	float: left;
+	text-align: center;
+	padding-top: 4px;
+	font-weight: bold;
+	color: #FFFFFF;
+	margin-top: 8px;
+}
+
+.txtRecipientCount {
+	background-color: #F8F8F6;
+	border: solid 1px #15504e;
+	border-radius: 3px;
+	margin: 5px 5px 20px 5px;
+	padding: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: 600;
+	width: 110px;
+	text-align: center;
+	float: left;
+	opacity: 0.5
+}
+
+.lblOrderAmount {
+	clear: both;
+	float: left;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+.placeOrderRecipient {
+	height: 311px;
+}
+
+.placeOrderRecipientCard {
+	padding-bottom: 20px;
+	cursor: pointer;
+	height: 100%;
+}
+
+.placeOrderRecipientCardContentCenter {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 100%;
+}
+
+.PlaceOrderRemoveButton {
+	border-radius: 50%;
+	border: solid 1px #15504e;
+	background-color: transparent;
+	color: #15504e;
+	position: relative;
+	top: 8px;
+	right: -5px;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	padding-top: 4px;
+	float: right;
+	cursor: pointer;
+}
+
+.btnSaveOrder, .btnSaveOrder:hover {
+	border-bottom: solid 4px #cbe9df;
+	background-color: #15504e;
+	color: #FFFFFF;
+	border-radius: 0px;
+	height: 50px;
+	width: 140px;
+	font-size: 16px;
+}
+
+.btnPlaceOrder, .btnPlaceOrder:hover {
+	border-bottom: solid 4px #cbe9df;
+	background-color: #15504e;
+	color: #FFFFFF;
+	border-radius: 0px;
+	height: 50px;
+	width: 140px;
+	font-size: 16px;
+}
+
+.placeOrderActionBar {
+	padding-bottom: 20px;
+}
+
+.placeOrderActionButtons {
+	text-align: right;
+	padding-top: 30px;
+	padding-right: 0px;
+}
+
+.placeOrderNavigationButtons {
+	padding-top: 40px;
+	padding-left: 0px;
+}
+
+.divBtnNavigationArrow {
+	border: solid 1px #15504e;
+	background-color: #FFFFFF;
+	color: #15504e;
+	font-weight: bold;
+	float: left;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding-top: 2px;
+	margin-right: 8px;
+}
+
+.divBtnNavigationNumbers {
+	border: solid 1px #15504e;
+	background-color: #FFFFFF;
+	color: #15504e;
+	font-weight: bold;
+	float: left;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding-top: 4px;
+	margin-right: 8px;
+}
+
+a.disabled {
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.65;
+ }
+/*End Place Order */
+
+/*Recipients List Popup*/
+.recipientsListModalDialog {
+	width: 95% !important;
+	margin-top:5px;
+}
+.pad-1{
+	padding: 15px 0;
+}
+
+.modal-content {
+	background-color: #F8F8F6 !important;
+	border-radius: 0px;
+}
+
+.modal-content .modal-header {
+	padding: 0px;
+}
+
+.modal-content .modal-header .modal-title {
+	padding: 10px;
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.modal-content .modal-header .close {
+	padding: 10px 20px;
+	background-color: #15504e;
+	color: #FFFFFF;
+	opacity: 1;
+	margin-top: 0px;
+	line-height: inherit;
+	font-size: 23px;
+	font-weight: normal;
+}
+
+.recipientsListModalDialog .txtSearch {
+	box-shadow: none;
+	border-color: #005051;
+	background-color: #F8F8F6;
+	font-size: 16px;
+	font-weight: normal;
+	color: #15504e;
+	font-style: italic;
+	padding: 18px;
+	margin-top: 0px;
+	width: 100%;
+}
+
+.recipientsListModalDialog .txtGroupIconRight {
+	position: relative;
+	width: 70%;
+}
+
+.icoSearch {
+	position: absolute;
+	padding: 6px;
+	pointer-events: none;
+	right: 0;
+	padding-right: 10px;
+	font-size: 26px;
+	color: #000000;
+}
+
+.txtSearch::-webkit-input-placeholder {
+	font-size: 16px;
+	font-weight: normal;
+	color: #15504e;
+	font-style: italic;
+}
+
+.modal-body {
+	padding: 0px 15px;
+}
+
+.recipientsListActionBar {
+	background-color: #E7F2EC;
+	padding: 10px;
+}
+
+.btn.btnSelectAll
+	{
+		padding: 10px;
+    font-size: 13px;
+}
+
+.recipientsListModalDialog .iconSelectAll {
+	font-size: 20px;
+	position: relative;
+	top: 4px;
+}
+
+.recipientsListModalDialog .recipientsListSection {
+	/*padding: 20px 15px;*/
+	overflow: auto;
+	max-height: 420px;
+}
+
+.recipientsListModalDialog .recipientsListSectionColumn {
+	
+}
+
+.recipientsListModalDialog .recipientsListSectionColumnBorder {
+	border-right: solid 1px #15504e;
+}
+
+.recipientsListModalDialog .recipientsListRecipientName {
+	color: #15504e;
+	font-size: 16px;
+	cursor: pointer;
+	padding-top: 10px;
+}
+.recipientsListModalDialog .recipientsListRecipientName:nth-child(even){
+	background: #cbe9df85;
+}
+.recipientsListModalDialog .recipientsListRecipientName input[type="checkbox"] {
+	margin:4px 7px 0 0;
+
+}
+
+.recipientsListModalDialog .iconUncheck {
+	position: relative;
+	top: 6px;
+	color: #15504e;
+}
+
+.recipientsListModalDialog .iconUncheckShow {
+	display: initial;
+}
+
+.recipientsListModalDialog .iconCheck {
+	position: relative;
+	top: 6px;
+	color: #15504e;
+}
+
+.recipientsListModalDialog .iconCheckShow {
+	display: initial;
+}
+
+.recipientsListModalDialog .iconCheck {
+	position: relative;
+	top: 6px;
+	color: #15504e;
+}
+
+.modal-footer {
+	padding-right: 70px;
+	border-top: none;
+}
+
+.recipientsListModalDialog .btnSave, .btnSave:hover {
+	border-bottom: solid 0px #cbe9df;
+	background-color: #15504e;
+	color: #FFFFFF;
+	border-radius: 0px;
+	height: 50px;
+	width: 130px;
+	font-weight: 600;
+}
+
+/*End Recipients List Popup*/
+
+/*View Order*/
+.containerViewOrderBG {
+	background-color: #F8F8F6;
+	display:flex;
+    justify-content:center;
+    min-height: 480px
+}
+
+.ContainerViewOrderContent {
+	width: 83%;
+}
+
+.viewOrderPageHeader {
+	padding-top: 20px;
+}
+
+.viewOrderPageContent {
+	padding-top: 20px;
+	min-height: 400px;
+}
+
+.viewOrderLabel {
+	padding-left: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.viewOrderDropdown {
+	background-color: #F8F8F6;
+	border-color: #15504e;
+	border-radius: 3px;
+	margin: 8px 5px 0px 5px;
+	padding: 8px;
+	color: #15504e;
+	font-size: 16px;
+	font-weight: normal;
+	width: 70%;
+}
+
+.viewOrderPageContent .txtCalendar {
+	box-shadow: none;
+	border-color: #15504e;
+	background-color: #F8F8F6;
+	font-size: 16px;
+	font-weight: normal;
+	color: #15504e;
+	font-style: italic;
+	margin-top: 8px;
+	width: 100%;
+	height: 42px;
+}
+
+.viewOrderPageContent .txtGroupIconRight {
+	position: relative;
+	width: 70%;
+}
+
+.viewOrderPageContent .txtGroupIconRight .icoCalendar {
+	position: absolute;
+	padding: 6px;
+	pointer-events: none;
+	right: 0;
+	padding-right: 10px;
+	font-size: 26px;
+	color: #15504e;
+}
+
+.viewOrderPageContent .tableList {
+	padding-top: 30px;
+}
+
+.viewOrderPageContent table {
+	border: none;
+}
+
+.viewOrderPageContent table tr th, .viewOrderPageContent table tr td {
+	border-bottom:solid 1px #cbe9df;
+	font-size: 15px;
+	font-weight: normal;
+	padding-left: 15px;
+}
+
+.viewOrderPageContent table tr th {
+	background-color:#15504e;
+	color: #cbe9df;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+.viewOrderPageContent table tr td {
+	color: #15504e9e;
+	border: none;
+}
+
+.viewOrderPageContent table tr th, .viewOrderPageContent table tr td {
+	border-right: solid 1px #f8f8f6;
+}
+
+.viewOrderPageContent table tr th:last-child, .viewOrderPageContent table tr td:last-child
+	{
+	border-right: none;
+}
+
+.viewOrderPageContent .table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #FFF;
+}
+
+.viewOrderPageContent .table-striped>tbody>tr:nth-of-type(even) {
+	background-color: #cbe9df85;
+}
+
+.viewOrderPageContent table tr td .glyphicon-edit {
+	font-size: 20px;
+}
+
+.viewOrderNavigation {
+	padding-bottom: 20px;
+}
+
+.viewOrderNavigationButtons {
+	padding-top: 25px;
+	padding-left: 14px;
+}
+
+.viewOrderNavigationButtons .divBtnNavigationArrow {
+	border: solid 1px #15504e;
+	background-color: #FFFFFF;
+	color: #15504e;
+	font-weight: bold;
+	float: left;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding-top: 2px;
+	margin-right: 8px;
+}
+
+.viewOrderNavigationButtons .divBtnNavigationNumbers {
+	border: solid 1px #15504e;
+	background-color: #FFFFFF;
+	color: #15504e;
+	font-weight: bold;
+	float: left;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	padding-top: 4px;
+	margin-right: 8px;
+}
+
+.txtCalendar::-webkit-input-placeholder {
+	font-size: 16px;
+	font-weight: normal;
+	color: #15504e;
+	font-style: italic;
+}
+
+/*End View Order*/
+
+.emptyBox {
+	min-height: 500px;
+	padding: 50px;
+}
+
+input.txtCalendar{
+  border-radius:3px;
+  height:auto;
+}
+
+input.txtCalendar:hover{
+}
+
+/*Pagination*/
+ul.ngx-pagination{
+	padding: 0;
+	margin: 0;
+	margin-left:-8px;
+}
+.ngx-pagination li {
+	border: solid 1px #155048;
+    background-color: #FFFFFF;
+    color: #15504e;
+    font-weight: bold;
+    float: left;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding-top: 0;
+    margin: 8px;
+
+}
+.ngx-pagination li.current{
+	background: #155048
+}
+.ngx-pagination .pagination-previous a,.ngx-pagination .pagination-next a,.ngx-pagination .pagination-previous.disabled,.ngx-pagination .pagination-next.disabled {
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1.1;
+    display: inline-block;
+    font-family: 'Material Icons';
+    padding: 0 !important
+}
+
+.ngx-pagination .pagination-previous a:before, .ngx-pagination .pagination-previous.disabled:before{
+	content:'arrow_left' !important;
+	
+
+}
+.ngx-pagination a, .ngx-pagination button {
+	padding: 0.3rem !important
+}
+.ngx-pagination .pagination-next a:after, .ngx-pagination .pagination-next.disabled:after{
+	content:'arrow_right' !important;
+}
+.current {
+
+}
+.m-0 {
+	margin-left: 0
+}
+.alert-success {
+	padding: 12px 28px;
+	color:#fff;
+	background: #15504e;
+}
+.alert-success a,.alert-success a.close{
+	color: #fff;
+	font-weight: bold;
+	opacity: 1
+}
+.alert-success a:hover{
+	color: #fff;
+}
+
+.fade.out {
+	 opacity: 0;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+.fade.in{
+	opacity: 1
+}
+
+.dropdown a{
+	background: none !important
+}
+
+/* Date Picker */
+.bs-datepicker-container {
+	padding: 0;
+}
+.bs-datepicker-head button {
+	vertical-align: middle;
+	    height: 28px;
+    line-height: 21px;
+}
+.bs-datepicker-head button.next, .bs-datepicker-head button.previous{
+	margin: 3px 3px 0px;
+}
+.bs-datepicker-head button.next span, .bs-datepicker-head button.previous span{
+	line-height: 0.75;
+}
+.theme-green .bs-datepicker-head {
+	background-color: #15504e;
+	padding: 0;
+    height: 35px;
+}
+.theme-green .bs-datepicker-body table td.week span{
+	color: #15504e;
+}
+.recipient .pageTitle, .recipient .viewOrderPageContent {
+	padding: 0;
+}
+.btnRec,.btnRec:focus,.btnRec:hover {
+	background: #15504e;
+    color: #fff;
+    border-radius: 0;
+    padding: 8px;
+    text-transform: uppercase;
+}
+.material-icons.add-icon {
+	font-size: 35px;
+    padding: 0 5px;
+    color: #15504e;
+    cursor: pointer;
+}
+.activeLink {
+	cursor: pointer;
+}
+.activeLink:hover {
+	opacity: 0.75;
+}
+.viewOrderPageContent table tr td.activeLink{
+	color: #333;
+}
+.modal {
+	background-color: #e7f2ecb3;
+}
+
+.alertMessage{
+	background: #00000066
+}
+
+.alertMessage .modal-dialog{
+	margin-top:180px;
+}
+
+.alertMessage .modal-body{
+	background-color: #fff;
+}
+
+.alertMessage .modal-footer{
+	padding: 5px 12px 12px;
+}
+.alertMessage .btn{
+    min-width: 81px;
+}
+
+.alertMessage p {
+	padding: 20px;
+}
+
+.alertMessage .material-icons{
+    vertical-align: middle;
+    font-size: 32px;
+}
+.alertMessage .alert-success{
+	color: #15504e;
+	background: none;
+	padding: 0;
+}
+.alertMessage .alert-danger{
+	background: none;
+	padding: 0;
+}
+.alert-warning{
+	color: #15504e;
+    background-color: #e1f1ea;
+    padding: 3px 0
+}
+
+select:disabled {
+	opacity: 0.65
+}
+.glyphicon-edit,.view{
+	cursor: pointer;
+}
+/*view orders */
+.viewDetail{
+	min-height: 500px;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #15504e;
+}
+.viewDetail .placeOrderRecipient{
+	height: auto;
+}
+.viewDetail .placeOrderListRowContent{
+	padding: 20px 10px;
+}
+.viewDetail .placeOrderGiftItem,.viewDetail .placeOrderGiftItemCard,.viewDetail .placeOrderGiftItemCard .card-body{
+	padding: 0
+}
+.viewmessage {
+	border: 1px solid #15504e;
+	border-radius: 3px;
+	padding: 10px;
+	margin: 10px;
+}
+.blue{
+	color: #1c5d5c
+}
+.editOrder{
+	width: 115px;
+}
+.editOrder div{ 
+	float: left;
+	width:30px;
+	height: 30px;
+
+}
+.editOrder .disabled{
+	opacity: 0.75;	
+	cursor: default;
+}
+.viewDetail input:disabled{
+	opacity: 0.75;
+}
+.recipientPopup {
+	width: 900px;
+}
+.recipientPopup .modal-body {
+	    max-height: 550px;
+    overflow-y: auto;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.recipientPopup .viewOrderPageContent,.recipientPopup .viewOrderPageContent .tableList{
+	padding-top:0;
+}
+.giftItemPrice{
+   font-family:"Lyon",serif;	
+   font-size:16px;	
+}
+.note.alert-danger{
+	margin-top: 6px;
+}
+.minHeight{
+	min-height: 370px;
+}
+.p-40{
+	padding: 20px 40px 10px;
+}
+
+.createOrganizationLabel{
+    padding-left: 0px;
+    font-size: 14px;
+    font-weight: normal;
+    color: #3A3A3A;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;       
+}
+.createOrganizationPageContent div{
+	padding: 10px;
+	height: 85px;
+
+}
+.createOrganizationPageContent div.text-danger{
+	padding: 0px;
+}
+.text-danger{
+	font-size: 12px;
+	letter-spacing: 1px
+}
+.createOrganizationPageHeaderRow .pageSubTitle {
+	padding: 15px 10px 5px;
+}
+
+.btn {
+	background: #155048ed;
+    letter-spacing: 2px;
+    color: #fff;
+    border-radius: 0;
+    padding: 12px 20px;
+    min-width: 150px;
+    text-transform: uppercase;
+}
+.nxt{
+	margin-right: -14px;
+    margin-top: 20px;
+}
+.btn:hover,.btn:focus,.btn:active{
+	background: #155048;
+	color: #B4E0D8;	
+	outline: none;
+}
+
+
+.txtLarge{
+    box-shadow: none;
+    border: solid 1px #D5D5D5;
+    background-color:#FFF;
+    font-size:15px;
+    font-weight: normal;
+    color: #15504e;
+    font-style: normal;  
+    padding: 4px 6px;
+    margin-top: 8px; 
+    width:100%; 
+    letter-spacing: 1px;
+}
+
+
+
+.createEmployeePageContent .txtLarge{
+    width:100%; 
+    border-radius:0px;
+}
+.createOrganizationPageContent .txtLarge{ 
+    width:100%; 
+}
+.viewOrderPageContent .material-icons {
+	vertical-align: middle;
+}
+.viewOrderPageContent .material-icons,.viewOrderPageContent .glyphicon-edit {
+	color: #15504e9e;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+	background-color: initial;
+}
+
+/*Login Page*/
+.bg {
+    background-image:url("/assets/images/login_bg.jpg");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.loginContainer{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.loginContainerContent {
+    text-align:center;
+}
+
+.loginlogo{
+    margin-bottom:20px;
+}
+
+.logoText{
+    color:rgb(185,122,87);
+    font-size:35px;
+}
+
+.loginTextbox {
+    width: 400px;
+    height: 60px;
+    margin-bottom: 10px;
+    padding: 0px 15px;
+    background-color: whitesmoke;
+    border: solid 1px #15504e;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.loginTextbox::-webkit-input-placeholder {
+    letter-spacing: 2px;
+}
+/*End Login*/
+.tableList .glyphicon{
+	float: right;
+	margin-top: 3px;
+}
+.glyphicon-sort.disabled{
+	opacity: 0.5;
+}
+.fontError .alert-danger{
+	font-size:25px;
+}
+.recipientsListModalDialog .recipientsListRecipientName.recPop{
+	background: #245b54;
+    color: #fff;
+    padding: 10px;
+
+	}
+.recipientsListModalDialog .recipientsListRecipientName div{
+	padding-left:0 !important;
+	padding-right:2px !important;
+}
+
+.giftItemPrice{
+    font-family:"Lyon",serif;
+    font-size:16px;
+}
+.placeOrderMessage{
+    text-align: left;
+    padding-top: 30px;
+    padding-right: 0px;
+}
+.emptyBox{
+    text-align: center;
+}
+.discount{
+	font-size: 14px;
+	color: #47c149
+}
+.discountOrder{
+	letter-spacing: 1px;
+}
+.discountOrder input{
+	border: solid 1px #15504e;
+    border-radius: 3px;
+    margin: 5px 5px 20px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 75px;
+}
+.comment{
+	padding: 10px 0 0 0;
+	letter-spacing: 1px;
+}
+.comment input{
+	border: solid 1px #15504e;
+    border-radius: 3px;
+    margin: 5px 5px 30px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 250px;
+}
+.shipTxt a{
+ 	font-size:16px;
+ 	text-decoration: underline;
+ 	cursor: pointer;
+}
+.shippingBlk {
+	padding: 20px;
+    border: solid 1px #15504e;
+    line-height: 32px;
+    font-size: 16px;
+    color: #15504e;
+    letter-spacing: 1px;
+}
+.shippingBlk .border{
+	    border-top: 1px solid #ccc;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px
+}
+.bgdis{
+	background-color: #cbe9df69;
+}
+.shipButton{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left:0;
+    font-size:14px
+}
+.shipButton.disabled{
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal1 {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+.loading .modal1 {
+    display: block;
+}
+
+.change-password .loginTextbox{
+	height: 43px;
+}
+
+
+
+
+
+
+
+
+

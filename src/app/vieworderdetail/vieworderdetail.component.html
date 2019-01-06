@@ -1,0 +1,154 @@
+<app-header></app-header>
+<div class="containerPlaceOrderBG viewDetail">
+        <div class="containerPlaceOrderContent">
+            <div class="row">
+                <div class="col-lg-2 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-lg-8 col-md-10 placeOrderPageTitleContainer">
+                    <h2 class="pageSubTitle">{{clientName}} </h2>
+                </div>
+                <div class="col-lg-2 col-md-1">
+                    &nbsp;
+                </div>
+            </div>
+
+            <div class="row placeOrderListRow"  *ngFor="let order of orders; let i = index">
+                <div class="col-lg-2 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-lg-8 col-md-10 placeOrderListRowContent">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2">
+                            <div class="placeOrderGiftItem">
+                                <div class="card text-center placeOrderGiftItemCard">
+                                    <div class="card-header placeOrderGiftItemCardImageCenter">
+                                        <img src="{{_imageURL}}{{order.itemImage}}?lastmod={{timeStamp}}" alt="{{order.itemName}}" class="img-responsive giftItemsImage" />
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="card-title placeOrderGiftItemTitle">{{order.itemName}}</span><br />
+                                    </div>
+                                    <div class="card-footer text-muted giftItemPrice">
+                                        $ {{order.itemPrice.toFixed(2)}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <span class="placeOrderGiftItemSubTitle">MESSAGE</span>
+                            <div class="viewmessage">{{order.message?order.message:'No Message'}}</div>
+                            <span class="placeOrderGiftItemSubTitle">DELIVERY DATE:</span>
+                             {{order.requestedDeliveryDate | date: 'MM/dd/yyyy'}}
+                            <br />
+                            <span *ngIf="order.discount">
+                            <span class="placeOrderGiftItemSubTitle">DISCOUNT:</span>
+                             {{order.discount}} %
+                            <br />
+                            </span>
+                        </div>
+                        <div class="col-lg-3 col-md-3 placeOrderRecipient">                            
+                            <div class="card text-center placeOrderRecipientCard">
+                                <div class="card-header placeOrderRecipientCardContentCenter">
+                                    <div>
+                                        <input [disabled]="(order.orderRecipients.length > 0)? null : true" type="button" class="btnPlaceOrderAddEditRecipients" (click)="showModal(i)" value="VIEW RECIPIENT" /><br /><br />
+                                         <span class="lblOrderAmount">Quantity: {{order.quantity}}</span>
+                                        <span class="lblOrderAmount">Sub Total: $ {{(order.quantity*order.itemPrice).toFixed(2)}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="modal show" id="myModal" role="dialog" *ngIf="show == i">
+                      <div class="modal-dialog recipientPopup">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" (click)="hideModal()">X</button>
+                            <h4 class="modal-title">Recipient List</h4>
+                          </div>
+                          <div class="modal-body viewOrderPageContent">
+                                <div class="row tableList">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <th>RECIPIENT</th>
+                                                        <th>ADDRESS</th>
+                                                        <th>SHIP DATE</th>
+                                                        <th>SHIP TO</th>
+                                                        <th>MESSAGE</th>
+                                                        <th>TRACKING NUMBER</th>
+                                                    </tr>
+                                                    <tr *ngFor="let recipt of order.orderRecipients">
+                                                        <td>{{recipt.firstName}} {{recipt.lastName}}</td>
+                                                        <td>{{recipt.address1}} {{recipt.address2}} {{recipt.city}} {{recipt.state}} {{recipt.zip}} {{recipt.country}}</td> 
+                                                        <td>{{recipt.shipmentDate | date: 'MM/dd/yyyy'}}</td>
+                                                        <td>{{recipt.shipToClient==1?'Billing Address':'Shipping Address'}}</td>
+                                                        <td>{{recipt.message}}</td>
+                                                        <td>{{recipt.trackingNumber}}</td>
+                                                    </tr>
+                                                   
+                                                </table>
+                                </div>
+                          </div>
+                          </div>
+                      </div>
+                </div>
+            </div>
+
+            <div class="row placeOrderListRow" *ngIf="(notes!=null) || (comments!=null)">
+                <div class="col-lg-2 col-md-1">
+                    &nbsp;
+                </div>
+                <div class="col-lg-8 col-md-10 placeOrderListRowContent">
+                   <div class="row placeOrderPageTitleContainer">
+                       <div class="col-md-6" *ngIf="notes!=null">
+                           <div class="placeOrderGiftItemSubTitle">NOTES:</div>
+                           <p style="padding-left:8px;">{{notes}}</p>
+                       </div>
+                       <div class="col-md-6" *ngIf="comments!=null">
+                           <div class="placeOrderGiftItemSubTitle">COMMENTS:</div>
+                           <p style="padding-left:8px;">{{comments}}</p>
+
+                       </div>
+                   </div>
+                </div>
+                <div class="col-lg-2 col-md-1">
+                    &nbsp;
+                </div>
+            </div>
+
+
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10 shippingBlk">
+					<div class="row">
+						<div class="col-lg-7">SUBTOTAL:</div>
+						<div class="col-lg-2 text-right">${{orderPrice}}</div>
+                    </div>
+                    <div class="row">
+						<div class="col-lg-7">DISCOUNTED PRICE:</div>
+						<div class="col-lg-2 text-right">${{discountedPrice}}</div>
+					</div>
+                    <div class="row">
+						<div class="col-lg-7">TAX:</div>
+						<div class="col-lg-2 text-right">${{taxAmount}}</div>
+					</div>					
+					<div class="row">
+						<div class="col-lg-7">ESTIMATED SHIPPING COST:</div>
+						<div class="col-lg-2 text-right">${{shipmentCost}}</div>
+					</div>
+					<div class="row border">
+						<div class="col-lg-7">TOTAL ORDER PRICE:</div>
+						<div class="col-lg-2 text-right">${{orderTotalAmount}}</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+        </div>
+    </div>
+ <app-footer></app-footer>

@@ -1,0 +1,108 @@
+.giftItemPrice{
+    font-family:"Lyon",serif;
+    font-size:16px;
+}
+.placeOrderMessage{
+    text-align: left;
+    padding-top: 30px;
+    padding-right: 0px;
+}
+.emptyBox{
+    text-align: center;
+}
+.discount{
+  font-size: 14px;
+  color: #47c149
+}
+.discountOrder input{
+  border: solid 1px #15504e;
+    border-radius: 3px;
+    margin: 5px 5px 20px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 75px;
+}
+.comment{
+  padding: 10px 0 0 0;
+  letter-spacing: 1px;
+}
+.comment input{
+  border: solid 1px #15504e;
+    border-radius: 3px;
+    margin: 5px 5px 30px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 250px;
+}
+.shipTxt a{
+  font-size:16px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.shippingBlk {
+  padding: 20px;
+    border: solid 1px #15504e;
+    line-height: 32px;
+    font-size: 16px;
+    color: #15504e;
+    letter-spacing: 1px;
+}
+.shippingBlk .border{
+      border-top: 1px solid #ccc;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px
+}
+.bgdis{
+  background-color: #cbe9df69;
+}
+.shipButton{
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    text-decoration: underline;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding-left:0;
+    font-size:14px
+}
+.shipButton.disabled{
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Start by setting display:none to make this hidden.
+   Then we position it in relation to the viewport window
+   with position:fixed. Width, height, top and left speak
+   speak for themselves. Background we set to 80% white with
+   our animation centered, and no-repeating */
+.modal1 {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+.loading .modal1 {
+    display: block;
+}

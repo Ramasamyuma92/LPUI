@@ -1,0 +1,426 @@
+<app-header [isCart]="isCart" [itemCount]="itemCount"></app-header>
+<form [formGroup]="orderForm" novalidate>
+	<div class="containerPlaceOrderBG" [class.loading]="showloader">
+
+			<div class="containerPlaceOrderContent" *ngIf = "isData">
+		
+			<div class="row">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10 placeOrderPageTitleContainer">
+					<h2 class="pageSubTitle">Place Order for: {{clientName}}
+					<!-- <span class="pull-right">Total: $ {{orderPrice.toFixed(2)}} <span class="discount" *ngIf="discount">({{discountPercent}}% Discount added)</span></span>
+					-->
+					</h2>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+			<div formArrayName="orderItems">
+				<div class="row placeOrderListRow"
+					*ngFor="let order of orderItems.controls ; let i=index"
+					[formGroupName]="i">
+					<div class="col-lg-2 col-md-1">&nbsp;</div>
+					<div class="col-lg-8 col-md-10 placeOrderListRowContent">
+						<div class="row">
+							<div class="col-lg-2 col-md-2">
+								<div class="placeOrderGiftItem">
+									<div class="card text-center placeOrderGiftItemCard">
+										<div class="card-header placeOrderGiftItemCardImageCenter">
+											<img src="{{_imageURL}}{{order.value.itemImage}}?lastmod={{timeStamp}}" alt={{order.value.itemName}}
+												class="img-responsive giftItemsImage" />
+										</div>
+										<div class="card-body">
+											<span class="card-title placeOrderGiftItemTitle">{{order.value.itemName}}</span>
+										</div>
+										<div class="card-footer text-muted giftItemPrice">
+											${{order.value.itemPrice.toFixed(2)}}
+											<br/><span *ngIf="order.value.discount>0">({{order.value.discount}}%) Discount</span>
+												
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6 col-md-6">
+								<select id="drpCustomMessage" name="drpCustomMessage"
+									class="placeOrderDropdown" (change)="onChangeMessage($event.target.value,i)">
+									<option value="">Select Message</option>
+									<option *ngFor="let message of customMessage" value={{message.message}}>
+										{{message.messageTitle}}
+									</option>
+								</select><br />
+								<textarea rows="5" id="txtMessage" class="placeOrderTextarea"
+									formControlName="message">
+								{{message}}</textarea>
+								<br /> <span class="placeOrderGiftItemSubTitle">DELIVERY DATE<span class="required">*</span></span><br /> <input type="text" readonly placeholder="mm/dd/yyyy" placement="right"
+									class="form-control" [minDate]="minDate" #dpYMD="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY',showWeekNumbers:false}" formControlName="requestedDeliveryDate" class="placeOrderTextbox" [ngClass]="{'has-error': ((!order.value.requestedDeliveryDate) && error)}"/> <br />
+
+							</div>
+							<div class="col-lg-3 col-md-3 placeOrderRecipient">
+								<div class="card text-center placeOrderRecipientCard">
+									<div class="card-header placeOrderRecipientCardContentCenter">
+										<div>
+											<input type="button" class="btnPlaceOrderAddEditRecipients"
+												value="ADD/EDIT RECIPIENTS"
+												(click)="viewRecipient(orderId,order.value.orderItemId,i)" [ngClass]="{'has-error': ((isRecError) && (order.value.orderItemPrice == 0))}" /><br /> <br />
+											<!--<div class="divMinusCircle" (click)="decrement(i)">-</div>-->
+
+											<input type="number" min="1" id="txtRecipientCount"
+												name="quantity" formControlName="quantity"
+												class="txtRecipientCount" disabled="true" />
+											<!--<div class="divPlusCircle" (click)="increment(i)">+</div>-->
+											<br /> <br /> <span name="orderItemPrice" id="orderItemPrice_{{i}}" class="lblOrderAmount">Sub
+												Total: $ {{order.value.orderItemPrice.toFixed(2)}}</span> <input
+												type="hidden" formControlName="orderItemPrice"/>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-1 col-md-1">
+								<div class="PlaceOrderRemoveButton"
+									(click)="deleteOrder(i, order.value.orderItemId)">X</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-1">&nbsp;</div>
+					<!-- Modal -->
+	<div class="modal show" id="myModal" role="dialog" *ngIf="modalShow == i">
+			<div class="modal-dialog recipientsListModalDialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							(click)="hideModal(i)">X</button>
+						<h4 class="modal-title">Recipients List</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row recipientsListActionBar">
+							<div class="col-md-5">
+								<img src="{{_imageURL}}{{order.value.itemImage}}" alt={{order.value.itemName}} width="80px"/> &nbsp;&nbsp; <span _ngcontent-c2="" class="card-title placeOrderGiftItemTitle">{{order.value.itemName}}</span>	
+
+							</div>
+							
+							<div class="col-md-4 pull-right  text-right  pad-1">
+								<button class="btn btnSelectAll" (click)="addAllRecipients(i)">
+									<i class="material-icons iconSelectAll">done</i>
+									Select All
+								</button>&nbsp;&nbsp;&nbsp;&nbsp;
+								<button class="btn btnSelectAll" (click)="deleteAllRecipients(i)">
+									<i class="material-icons iconSelectAll">clear</i> Deselect All
+								</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							</div>
+							<div class="col-md-3 pull-right pad-1">
+								<div class="txtGroupIconRight pull-right">
+									<i class="material-icons icoSearch">search</i> <input
+										type="text" class="form-control txtSearch"
+										placeholder="Search Recipients" [(ngModel)]="searchFName" [ngModelOptions]="{standalone: true}">
+							</div>
+							</div>
+						</div>
+						<div class="row recipientsListSection">
+							<div class="recipientsListSectionColumn recipientsListSectionColumnBorder">
+								<div formArrayName="orderRecipients">
+									<div class="recipientsListRecipientName col-md-12 recPop">
+										<div class="col-md-2" (click)="sort('firstName')">
+										<i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'firstName' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'firstName' && isDesc),
+                        'glyphicon-sort disabled': (column != 'firstName')}"
+    aria-hidden="true"> </i>
+Full Name</div>
+										<div class="col-md-2">Ship To</div>
+										<div class="col-md-2">Address</div>
+										<div class="col-md-3">Message</div>
+										<div class="col-md-2" (click)="sort('shipmentDate')">
+										<i class="glyphicon" 
+    [ngClass]="{ 
+                        'glyphicon-sort-by-attributes': (column == 'shipmentDate' && !isDesc), 
+                        'glyphicon-sort-by-attributes-alt': (column == 'shipmentDate' && isDesc),
+                        'glyphicon-sort disabled': (column != 'shipmentDate')}"
+    aria-hidden="true"> </i>
+Ship Date</div>
+										<div class="col-md-1">Qty.</div>
+
+									</div>
+									<div class="recipientsListRecipientName col-md-12" *ngFor="let ord of order.get('orderRecipients')['controls'] | orderBy: {property: column,direction: direction} | searchFilter: {firstName:searchFName} | paginate: { itemsPerPage: 10, currentPage: p};let j=index" [formGroupName]="(p-1)*10+j">
+										<!--| paginate: { itemsPerPage: 6, currentPage: p } 
+										 | orderBy: {property: column,direction: direction};
+										-->
+										<div class="col-md-2">
+											<input type="checkbox"  (click) = "onChangeShippmentCombination(ord.value.recipientId,order.value.requestedDeliveryDate,order.value.orderItemId)" formControlName="checkStatus" style="float:left;width:15px"/>
+												<span style="float:left;width:85%">{{ord.value.firstName}} {{ord.value.lastName}}</span>
+										</div>
+										<div class="col-md-2">
+											<select formControlName="shipToClient">
+												<option value=true>Billing Address</option>
+												<option value=false>Shipping Address</option>
+											</select>
+										</div>
+										<div class="col-md-2">
+											{{ord.value.address1}}{{ord.value.address2}}
+										</div>
+										<div class="col-md-3">
+											<select (change)="onChangeRecMessage($event.target.value,((p-1)*10+j),i,ord.value.recipientId)" style="vertical-align: top" style="width: 140px;vertical-align: top">
+												<option value="">Select Message</option>
+												<option *ngFor="let message of customMessage" value={{message.message}}>
+													{{message.messageTitle}}
+												</option>
+											</select>
+											<textarea rows="2" id="txtMessage" 
+												formControlName="message"  style="width: 140px">
+											{{ord.value.message}}</textarea>
+										</div>
+										<div class="col-md-2">
+											<input type="text" readonly placeholder="mm/dd/yyyy" placement="left" [minDate]="minDate" #dpYMD="bsDatepicker" bsDatepicker [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY',showWeekNumbers:false}" formControlName="shipmentDate"  [ngClass]="{'has-error': ((!ord.value.shipmentDate) && error)}"style="width: 150px"/>
+										</div>
+										<div class="col-md-1"><input type="number" min=1 formControlName="quantity" (click) = "onChangeShippmentCombination(ord.value.recipientId,order.value.requestedDeliveryDate)" style="width: 50px; text-align: center;" /></div>
+								</div>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<div class="row" *ngIf="order.get('orderRecipients').controls.length > 0">
+		                       <div class="col-md-8">
+		                            <pagination-controls (pageChange)="pageChanged($event)" previousLabel=""
+		                      nextLabel=""></pagination-controls>
+		                        </div>
+		                        <div class="col-md-4 pull-right">
+		                        <input type="button" class="btn btnSave" value="SAVE"
+							(click)="saveModal(i)" data-dismiss="modal"/>
+						</div>
+		                    	</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10">
+				<div class="row bgdis placeOrderPageTitleContainer" style="padding-top:20px;">
+						<div class="col-lg-6 col-md-6">
+						<div class="placeOrderGiftItemSubTitle">NOTES:</div>
+							 <textarea formControlName="notes" rows="5" class="placeOrderTextarea"></textarea>
+						</div>
+
+						<div class="col-lg-6 col-md-6">
+								<div class="placeOrderGiftItemSubTitle">COMMENTS:</div>
+								<textarea formControlName="comments" rows="5" class="placeOrderTextarea"></textarea>
+						</div>
+				</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10">
+					<div class="row bgdis placeOrderPageTitleContainer">
+						<div class="col-lg-6 col-md-5">
+							<div class="discountOrder"><span class="placeOrderGiftItemSubTitle">ADMIN DISCOUNT:</span>
+							 <input type="number" max=100 min=0 formControlName="adminDiscount" (input)="onChangeDiscount($event.target.value,i)" step="0.01"/></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+
+			<!-- <div class="row">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10 shippingBlk">
+					<div class="row">
+						<div class="col-lg-7">SUBTOTAL:</div>
+						<div class="col-lg-2 text-right">${{orderPrice}}</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7">TAX:</div>
+						<div class="col-lg-2 text-right">${{taxAmount}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7">DISCOUNTED PRICE:</div>
+						<div class="col-lg-2 text-right">-${{discountedPriceVal}}</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-7">ESTIMATED SHIPPING COST: <button class="shipButton" [disabled]="shipButtonError" [ngClass]="{'disabled':shipButtonError}"  (click)="shippingModal()">Calculate Shipping Cost</button></div>
+						<div class="col-lg-2 text-right">+ ${{toFixed(totalShippingCost,2)}}</div>
+					</div>
+					<div class="row border">
+						<div class="col-lg-7">TOTAL ORDER PRICE:</div>
+						<div class="col-lg-2 text-right">${{(orderTotalAmount).toFixed(2)}}</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div> -->
+
+			<div class="row placeOrderActionBar">
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+				<div class="col-lg-8 col-md-10">
+					<div class="row">
+						<div class="col-lg-5 col-md-5 pull-right placeOrderActionButtons">
+							<button id="btnSaveOrder" name="btnSaveOrder" *ngIf="orderStatusId==1" (click)="placeOrder(1,0)" class="btn">SAVE ORDER</button>&nbsp;&nbsp;&nbsp;&nbsp;
+							<button class="btn"
+								(click)="placeOrder(1,1)" *ngIf="orderStatusId==1">NEXT</button>
+							<button id="btnPlaceOrder" name="btnPlaceOrder" class="btn" (click)="placeOrder(2,1)" *ngIf="orderStatusId!=1">NEXT</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-1">&nbsp;</div>
+			</div>
+		</div>
+		<div class="row">
+			<div *ngIf = "!isData" class="emptyBox col-lg-12">Cart is Empty</div>
+		</div>
+	</div>
+	<div class="modal show" id="myModal" role="dialog" *ngIf="showShippingModal" [class.loading]="showloaderForCost">
+			<div class="modal1"></div>
+                      <div class="modal-dialog recipientPopup">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" (click)="closeShippingModal()">X</button>
+                            <h4 class="modal-title">Add Shipping Cost</h4>
+                          </div>
+                          <div class="modal-body viewOrderPageContent" formArrayName="orderShipping">
+                                <div class="row tableList">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <th>RECIPIENT</th>
+                                                        <th width="100">SHIP ADDRESS</th>
+                                                        <th width="100">SHIP METHOD</th>
+														<th>COST</th>
+														<th>QTY</th>
+                                                        <th>DELIV. DATE</th>
+                                                    </tr>
+                                                    <tr *ngFor="let shipping of orderForm.get('orderShipping').controls ; let k=index" [formGroupName]="k">
+                                                        <td>{{shipping.value.firstName}}</td>
+                                                        <td>{{shipping.value.address1}}{{shipping.value.address2}}</td> 
+                                                        <td>
+                                                        	<select formControlName="deliveryType" (change)="onChangeShippingMethod($event.target.value,shipping.value,k)">
+                                                        		<option value="">Select</option>
+                                                        		<option value="fedex_first_overnight">fedex_first_overnight</option>
+                                                        		<option value="fedex_priority_overnight">fedex_priority_overnight</option>
+                                                        		<option value="fedex_standard_overnight">fedex_standard_overnight </option>
+                                                        		<option value="fedex_2day">fedex_2day</option>
+                                                        		<option value="fedex_ground">fedex_ground</option>
+															</select>
+															<br>
+															<span style="color:red">{{shipping.value.errorMessage}} </span>
+                                                        </td>
+                                                        <td>$ {{(shipping.value.shipmentCost).toFixed(2)}}
+                                                        	
+														</td>
+														<td>{{shipping.value.quantity}}</td>
+                                                        <td>{{shipping.value.deliveryDate | date: 'MM/dd/yyyy'}}</td>
+                                                    </tr>
+                                                </table>
+                                </div>
+                          </div>
+                          <div class="modal-footer" style="padding-right:10px">
+								<input type="button" class="btn" value="APPLY" (click)="closeShippingModal()"/>
+                          </div>
+                          </div>
+                      </div>
+                </div>
+
+
+	
+	</form>
+		<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessagePlaced">
+      		<div class="modal-dialog">
+        		<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" (click)="hideMessage(2)">X</button>
+						<h4 class="modal-title">Success Message</h4>
+					</div>
+					<div class="modal-body">
+						<p><i class="material-icons alert-success">check_circle</i> Your order has been successfully Placed.Go to <a routerLink='/view' routerLinkActive='active'>View Orders</a> to check your orders
+						</p>
+					</div>
+             	</div>
+        	</div>
+		</div>
+
+		<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessageDelete">
+				<div class="modal-dialog">
+				  <div class="modal-content">
+					  <div class="modal-header">
+						  <button type="button" class="close" (click)="hideMessage(2)">X</button>
+						  <h4 class="modal-title">Success Message</h4>
+					  </div>
+					  <div class="modal-body">
+						  <p><i class="material-icons alert-success">check_circle</i> Your order has been successfully Cancelled.Go to <a routerLink='/view' routerLinkActive='active'>View Orders</a> to check your orders
+						  </p>
+					  </div>
+				   </div>
+			  </div>
+		  </div>
+
+<div class="modal show" id="myModal" role="dialog" *ngIf="showDeleteOrderModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					(click)="closeDeleteOrdermodal()">X</button>
+				<h4 class="modal-title">Close Order</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-8 pull-left">
+						Do you want to close the order ?
+					</div>
+					<div class="col-md-1">&nbsp;</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<input type="button" class="btn btnSave" value="YES"
+					(click)="deleteOrderModal()" data-dismiss="modal" />
+				<input type="button" class="btn btnSave" value="NO"
+					(click)="closeDeleteOrdermodal()" data-dismiss="modal" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="isError">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="hideMessage()">X</button>
+            <h4 class="modal-title">Error Message</h4>
+          </div>
+          <div class="modal-body">
+           <p class="fontError">
+           	<span *ngIf="isRecError"><i class="material-icons alert-danger">error</i>
+           	Please Select Atleast one Recipient per order<br/>
+           </span>
+           <span *ngIf="error"><i class="material-icons alert-danger">error</i>
+           	Delivery Date is required
+            </span><br/>
+            <span *ngIf="shipmentCostError"><i class="material-icons alert-danger">error</i>
+           	Please Select Shipment Cost for each recipient</span>
+            </p>
+            
+          </div>
+          </div>
+      </div>
+</div>
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessageSaved">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="hideMessage(1)">X</button>
+            <h4 class="modal-title">Success Message</h4>
+          </div>
+          <div class="modal-body">
+           <p><i class="material-icons alert-success">check_circle</i> Your order has been successfully saved as Draft.
+            </p>
+          </div>
+          </div>
+      </div>
+</div>
+
+<app-footer></app-footer>

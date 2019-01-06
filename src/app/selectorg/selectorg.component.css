@@ -1,0 +1,118 @@
+.org div{
+    background-color: #fff;
+    padding: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+.orgCont {
+    width:86%;
+}
+.orgCont .pageSubTitle{
+    padding-left: 0
+}
+.org .shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 23.49%;
+}
+.org .shadow:nth-child(4n+1) {
+    margin-left:0;
+}
+.org img{
+    max-height: 100px;
+}
+.org .title:hover{
+    border:2px solid #cbe9df;
+    color: #15504e;
+}
+.org .title{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100px;
+    border: 2px solid #fff;
+    transition: border-color 0.5s linear;
+    color: #15504ed1;
+}
+.org .title p{
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    flex: auto;
+    -webkit-box-flex: 1;
+    -ms-flex: auto;
+}
+.containerBG{
+    background-color:#F8F8F6;
+    display:flex;
+    justify-content:center;
+}
+
+.client-list {
+    position: relative;
+    min-height: 80px;
+}
+
+.organizationSelectedImage{
+    font-size: 35px;
+    color: red;
+    z-index:2;
+    position:absolute;
+    right:0;
+    top:0;
+}
+
+.organizationUnSelectedImage{
+    font-size: 35px;    
+    z-index:2;
+    position:absolute;
+    right:0;
+    top:0;
+    color:transparent;
+}
+
+.organizationImage{
+    border:solid 1px #15504e;
+    cursor:pointer;
+    z-index:1;   
+}
+
+.organizationListAction{
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+@media (min-width: 992px){
+    .organizationBtnPadding{
+        padding-left:30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .organizationBtnPadding {
+        padding-left: 20px;
+    }
+}
+
+.btn1, .btn1:hover{    
+    border-bottom:solid 4px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    width:130px;
+    font-weight:600;
+}
+
+.footerBG{
+    background-color:#155048;
+    height:7%;
+    display:flex;
+    align-items:center;
+}
+
+.footerContent{
+    color:#FFFFFF;
+    text-align:left;
+    padding-left:20px;
+}

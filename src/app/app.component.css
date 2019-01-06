@@ -1,0 +1,761 @@
+/*Font*/
+@font-face
+{
+font-family:Lyon;
+src:url("/assets/fonts/LyonText-Regular.otf") format("opentype")
+}
+@font-face
+{
+font-family:Lyon;
+src:url("/assets/fonts/LyonText-RegularItalic.otf") format("opentype");
+font-style:italic;
+}
+@font-face
+{
+font-family:Brown;
+src:url("/assets/fonts/Brown-Light.otf") format("opentype");
+font-weight:300;
+}
+@font-face
+{
+font-family:Brown;
+src:url("/assets/fonts/Brown-Regular.otf") format("opentype");
+font-weight:normal;
+}
+@font-face
+{
+font-family:Brown;
+src:url("/assets/fonts/Brown-Regular-Italic.otf") format("opentype");
+font-weight:normal;
+font-style:italic;
+}
+@font-face
+{
+font-family:Brown;
+src:url("/assets/fonts/Brown-Bold.otf") format("opentype");
+font-weight:bold;
+}
+/*Font - end*/
+
+
+/*Common*/
+body, html {
+    height:100%;    
+    font-family:"Brown","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.afterloginlogo{
+    margin-left:20px!important;
+    margin-bottom:10px;
+}
+/*End Common*/
+
+/*Login Page*/
+.bg {
+    background-image:url("/images/login_bg.jpg");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+.loginContainer{
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.loginContainerContent {
+    text-align:center;
+}
+
+.loginlogo{
+    margin-bottom:20px;
+}
+
+.logoText{
+    color:rgb(185,122,87);
+    font-size:35px;
+}
+
+.linkForgotPassword, .linkForgotPassword:hover{
+    color:#663300;
+    text-decoration:none;
+    line-height:55px;
+}
+/*End Login*/
+
+
+
+/*Select Organization*/
+.containerBG{
+    background-color:#F8F8F6;
+    display:flex;
+    justify-content:center;
+}
+
+.organizationSelectedImage{
+    font-size: 35px;
+    color: red;
+    z-index:2;
+    position:relative;
+    right: -180px;
+    top:-10px;
+}
+
+.organizationUnSelectedImage{
+    font-size: 35px;    
+    z-index:2;
+    position:relative;
+    right: -180px;
+    top:-10px;
+    color:transparent;
+}
+
+.organizationImage{
+    border:solid 1px #15504e;
+    cursor:pointer;
+    margin-top:-50px;
+    z-index:1;    
+}
+
+.organizationListAction{
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+@media (min-width: 992px){
+    .organizationBtnPadding{
+        padding-left:30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .organizationBtnPadding {
+        padding-left: 20px;
+    }
+}
+
+.btn1, .btn1:hover{    
+    border-bottom:solid 4px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    width:130px;
+    font-weight:600;
+}
+
+.footerBG{
+    background-color:#155048;
+    height:7%;
+    display:flex;
+    align-items:center;
+}
+
+.footerContent{
+    color:#FFFFFF;
+    text-align:left;
+    padding-left:20px;
+}
+/*End Organization*/
+
+/*Gift Items*/
+.containerGiftItemsBG{
+    background-color:#F8F8F6;
+    display:flex;
+    justify-content:center;
+    overflow-x:hidden;
+    overflow-y:auto;
+}
+
+.ContainerGiftItemsContent{
+    width:98%;
+}
+
+.giftItemsListRow{
+    padding-top:40px;
+}
+
+.giftItem{
+    padding:10px;
+    min-height:420px;
+}
+
+.giftItemBoxShadow{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);    
+}
+
+.giftItemCardOuterBorder{
+    height:400px;
+    border:solid 1px #15504e;
+}
+
+.giftItemCard{    
+    padding-bottom:20px;
+    cursor:pointer;
+}
+
+.giftItemCard .card-body{
+    padding-top:10px;
+
+}
+
+.giftItemCard .card-footer{
+    padding-top:10px;
+    padding-bottom:15px;
+}
+
+.giftItemCardImageCenter{    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.giftItemsImage{
+    
+}
+
+.giftItemTitle{
+    padding-top:8px;
+    color:#15504e;
+    font-size: 14px;
+    font-weight:bold;
+    font-family:"Brown","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;	
+}
+
+.giftItemPrice{
+   font-family:"Lyon",serif;
+   font-size:16px;	
+}
+
+/*End Gift Items*/
+
+/* Place Order */
+.containerPlaceOrderBG{
+    background-color:#F8F8F6;
+}
+
+.containerPlaceOrderContent{
+    width:98%;
+}
+
+.placeOrderPageTitleContainer{
+    padding-left:0px;
+}
+
+.placeOrderListRow{
+    padding-top:12px;
+}
+
+.placeOrderListRowContent{
+    border:solid 1px #15504e;
+}
+
+.placeOrderGiftItem{
+    padding:30px 10px 10px 10px;
+}
+
+.placeOrderGiftItemCard{    
+    padding-bottom:20px;
+    cursor:pointer;
+}
+
+.placeOrderGiftItemCardImageCenter{    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.placeOrderGiftItemTitle{
+    padding-top:8px;
+    color:#15504e;
+    font-size: 16px;
+    font-weight:bold;
+}
+
+.placeOrderGiftItemCard .card-body{
+    padding-top:10px;
+}
+
+.placeOrderGiftItemCard .card-footer{
+    padding-top:10px;
+}
+
+.placeOrderDropdown{
+    background-color:#F8F8F6;
+    border-color:#15504e;    
+    border-radius:3px;
+    margin: 20px 5px 0px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 400px;
+}
+
+.placeOrderTextarea{
+    background-color:#FFFFFF;
+    border-color:#15504e;
+    border-radius:3px;
+    margin: 12px 5px 20px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 400px;
+    resize:none;
+}
+
+.placeOrderGiftItemSubTitle{
+    padding:8px;
+    color:#15504e;
+    font-size: 16px;
+    font-weight:600;
+}
+
+.placeOrderTextbox{
+    background-color:#FFFFFF;
+    border:solid 1px #15504e;    
+    border-radius:3px;
+    margin: 5px 5px 20px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: 600;
+    width: 250px;
+    text-align:center;
+}
+
+.btnPlaceOrderAddEditRecipients, .btnPlaceOrderAddEditRecipients:hover{
+    border-bottom:solid 0px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:40px;
+    width:170px;
+    font-weight:600;
+}
+
+.divMinusCircle{
+    border-radius: 50%;
+    background-color: #15504e;
+    width: 30px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    padding-top: 4px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top:8px;
+}
+
+.divPlusCircle{
+    border-radius: 50%;
+    background-color: #15504e;
+    width: 30px;
+    height: 30px;
+    float: left;
+    text-align: center;
+    padding-top: 4px;
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-top:8px;
+}
+
+.lblOrderAmount {
+    clear:both;
+    float:left;
+    color:#15504e;
+    font-size: 16px;
+    font-weight:600;
+    letter-spacing:1px;
+}
+.placeOrderRecipient{
+    height:311px;
+}
+.placeOrderRecipientCard{
+    padding-bottom:20px;
+    cursor:pointer;
+    height:100%;
+}
+.placeOrderRecipientCardContentCenter{
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    height:100%;
+}
+
+.PlaceOrderRemoveButton{
+    border-radius: 50%;
+    border:solid 1px #15504e;
+    background-color: transparent;    
+    color:#15504e;
+    position: relative;
+    top: 8px;
+    right: -5px;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    padding-top: 4px;
+    float:right;
+    cursor:pointer;	
+}
+
+.btnSaveOrder, .btnSaveOrder:hover{    
+    border-bottom:solid 4px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    width:140px;
+    font-size:16px;
+}
+
+.btnPlaceOrder, .btnPlaceOrder:hover{    
+    border-bottom:solid 4px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    width:140px;
+    font-size:16px;
+}
+.placeOrderActionBar{
+    padding-bottom:20px;
+}
+
+.placeOrderActionButtons{
+    text-align:right;
+    padding-top:30px;
+    padding-right:0px;
+}
+
+.placeOrderNavigationButtons{
+    padding-top:40px;
+    padding-left:0px;    
+}
+
+.divBtnNavigationArrow{
+    border:solid 1px #15504e;
+    background-color:#FFFFFF;
+    color: #15504e;
+    font-weight:bold;
+    float:left;
+    width:30px;
+    height:30px;
+    text-align:center;
+    padding-top:2px;
+    margin-right:8px;
+}
+
+.divBtnNavigationNumbers{
+    border:solid 1px #15504e;
+    background-color:#FFFFFF;
+    color: #15504e;
+    font-weight:bold;
+    float:left;
+    width:30px;
+    height:30px;
+    text-align:center;
+    padding-top:4px;
+    margin-right:8px;
+}
+/*End Place Order */
+
+/*Recipients List Popup*/
+.recipientsListModalDialog{
+    width:800px!important;
+}
+.recipientsListModalDialog .modal-content{
+    background-color:#F8F8F6!important;
+    border-radius: 0px;
+}
+
+.recipientsListModalDialog .modal-content .modal-header{
+    padding:0px;   
+}
+.recipientsListModalDialog .modal-content .modal-header .modal-title{
+    padding:10px;
+    font-size: 20px;
+    font-weight:normal;    
+}
+
+.recipientsListModalDialog .modal-content .modal-header .close{
+    padding:10px 20px;
+    background-color:#15504e;
+    color:#FFFFFF;
+    opacity:1;
+    margin-top:0px;
+    line-height:inherit;
+    font-size:23px;
+    font-weight:normal;
+}
+
+
+.recipientsListModalDialog .txtSearch{
+    box-shadow: none;
+    border-color: #005051;
+    background-color:#F8F8F6;
+    font-size:16px;
+    font-weight: normal;
+    color: #15504e;
+    font-style: italic;  
+    padding: 18px;
+    margin-top: 0px; 
+    width:100%; 
+}
+
+.recipientsListModalDialog .txtGroupIconRight{
+    position:relative;
+    width:70%;
+}
+
+.recipientsListModalDialog .txtGroupIconRight .icoSearch{
+    position:absolute;
+    padding:6px;
+    pointer-events:none;
+    right:0;
+    padding-right:10px;
+    font-size:26px;
+    color: #000000;    
+}
+
+.txtSearch::-webkit-input-placeholder{
+    font-size:16px;
+    font-weight: normal;
+    color: #15504e;
+    font-style: italic;
+}
+
+.recipientsListModalDialog .modal-body{
+    padding:0px 15px;
+}
+
+.recipientsListActionBar{
+    background-color:#E7F2EC;
+    padding: 10px;
+}
+
+.recipientsListModalDialog .iconSelectAll{
+    font-size:20px;
+    position: relative;
+    top: 4px;
+}
+
+.recipientsListModalDialog .recipientsListSection{
+    padding:20px 15px;
+}
+
+.recipientsListModalDialog .recipientsListSectionColumn{
+
+}
+
+.recipientsListModalDialog .recipientsListSectionColumnBorder{
+    border-right:solid 1px #15504e;
+}
+
+.recipientsListModalDialog .recipientsListRecipientName{
+    color:#15504e;
+    font-size:16px;
+    cursor:pointer;
+    padding-top:5px;
+}
+
+.recipientsListModalDialog .iconUncheck{
+    position: relative;
+    top: 6px;
+    color:#15504e;
+    display:none;
+}
+
+.recipientsListModalDialog .iconUncheckShow{
+    display:initial;
+}
+
+.recipientsListModalDialog .iconCheck{
+    position: relative;
+    top: 6px;
+    color:#15504e;
+    display:none;
+}
+
+.recipientsListModalDialog .iconCheckShow{
+    display:initial;
+}
+
+.recipientsListModalDialog .iconCheck{
+    position: relative;
+    top: 6px;
+    color:#15504e;
+}
+
+.recipientsListModalDialog .modal-footer{
+    padding-right:70px;
+    border-top:none;
+}
+
+.recipientsListModalDialog .btnSave, .btnSave:hover{
+    border-bottom:solid 0px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    width:130px;
+    font-weight:600;
+}
+
+
+/*End Recipients List Popup*/
+
+/*View Order*/
+.containerViewOrderBG{
+    background-color:#F8F8F6;
+    display:flex;
+    justify-content:center;
+}
+
+.ContainerViewOrderContent{
+    width:83%;
+}
+
+.viewOrderPageHeader{
+    padding-top:20px;
+}
+
+.viewOrderPageContent{
+     padding-top:20px;
+}
+
+
+.viewOrderDropdown{
+    background-color:#F8F8F6;
+    border-color:#15504e;    
+    border-radius:3px;
+    margin: 8px 5px 0px 5px;
+    padding: 8px;
+    color: #15504e;
+    font-size: 16px;
+    font-weight: normal;
+    width: 70%;
+}
+
+.viewOrderPageContent .txtCalendar{
+    box-shadow: none;
+    border-color: #15504e;
+    background-color:#F8F8F6;
+    font-size:16px;
+    font-weight: normal;
+    color: #15504e;
+    font-style: italic;  
+    padding: 18px;
+    margin-top: 8px; 
+    width:100%; 
+}
+
+.viewOrderPageContent .txtGroupIconRight{
+    position:relative;
+    width:70%;
+}
+
+.viewOrderPageContent .txtGroupIconRight .icoCalendar{
+    position:absolute;
+    padding:6px;
+    pointer-events:none;
+    right:0;
+    padding-right:10px;
+    font-size:26px;
+    color: #15504e;    
+}
+
+
+
+.viewOrderPageContent .tableList{
+    padding-top:30px;
+}
+
+.viewOrderPageContent table{
+    border:solid 1px #cbe9df;
+}
+
+.viewOrderPageContent table tr th, .viewOrderPageContent table tr td {
+    border-bottom:solid 1px #cbe9df;
+    font-size:15px;
+    font-weight:normal;
+    padding-left:15px;
+}
+
+.viewOrderPageContent table tr th{
+    background-color:#15504e;
+    color:#FFF; 
+}
+
+.viewOrderPageContent table tr td {
+    color:#15504e;
+}
+
+.viewOrderPageContent table tr th, .viewOrderPageContent table tr td{
+    border-right:solid 1px #cbe9df;    
+}
+
+.viewOrderPageContent table tr th:last-child, .viewOrderPageContent table tr td:last-child{
+    border-right:none;
+}    
+
+.viewOrderPageContent .table-striped>tbody>tr:nth-of-type(odd){
+    background-color:#FFF;
+}
+
+.viewOrderPageContent .table-striped>tbody>tr:nth-of-type(even){
+    background-color:#F8F8F6;
+}
+
+.viewOrderPageContent table tr td .glyphicon-edit{
+    font-size:20px;
+}
+
+.viewOrderNavigation{
+    padding-bottom:20px;
+}
+
+.viewOrderNavigationButtons{
+    padding-top:25px;
+    padding-left:14px;    
+}
+
+.viewOrderNavigationButtons .divBtnNavigationArrow{
+    border:solid 1px #15504e;
+    background-color:#FFFFFF;
+    color: #15504e;
+    font-weight:bold;
+    float:left;
+    width:30px;
+    height:30px;
+    text-align:center;
+    padding-top:2px;
+    margin-right:8px;
+}
+
+.viewOrderNavigationButtons .divBtnNavigationNumbers{
+    border:solid 1px #15504e;
+    background-color:#FFFFFF;
+    color: #15504e;
+    font-weight:bold;
+    float:left;
+    width:30px;
+    height:30px;
+    text-align:center;
+    padding-top:4px;
+    margin-right:8px;
+}
+
+.txtCalendar::-webkit-input-placeholder{
+    font-size:16px;
+    font-weight: normal;
+    color: #15504e;
+    font-style: italic;
+}
+
+/*End View Order*/
+

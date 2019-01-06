@@ -1,0 +1,84 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand afterloginlogo" routerLink="/"><img
+				src="assets/images/logo.jpg" alt="LOLLI & POPS"/></a>
+		</div>
+		<ul class="nav navbar-nav pull-right">
+			
+			<li class="dropdown open">
+				<a class="dropdown-toggle" data-toggle="dropdown" (click)="toggle($event,'org')">Organization<span class="caret"></span></a>
+				<ul class="dropdown-menu" *ngIf="show">						
+						<li>
+								<a routerLink="/organization/create" routerLinkActive='active'>Create Organization</a>
+						</li>
+						<li>
+								<a routerLink="/organization" routerLinkActive='active'>View Organization</a>
+						</li>
+						<li>
+								<a routerLink="/selectorg" routerLinkActive='active'>Select Organization</a>
+						</li>
+						
+				</ul>
+			</li>
+			<li class="dropdown open">
+				<a class="dropdown-toggle" data-toggle="dropdown" (click)="toggle($event,'product')">Product<span class="caret"></span></a>
+				<ul class="dropdown-menu" *ngIf="showProduct">						
+						<li>
+								<a routerLink="/product/create" routerLinkActive='active'>Create Product</a>
+						</li>
+						<li>
+								<a routerLink="/product" routerLinkActive='active'>View Product</a>
+						</li>						
+				</ul>
+			</li>
+			<li class="dropdown open">
+				<a class="dropdown-toggle" data-toggle="dropdown" (click)="toggle($event,'order')">Order<span class="caret"></span></a>
+				<ul class="dropdown-menu" *ngIf="showOrder">
+					<li><a routerLink='/selectgifts' routerLinkActive='active' class={{isDisable}}> Create Order</a></li>
+					<li><a routerLink='/view' routerLinkActive='active'>View Order</a></li>
+				</ul>
+			</li>
+			<li><a routerLink="/csvimport">Import</a></li>
+			<li class="dropdown open">
+				<a class="dropdown-toggle" data-toggle="dropdown" (click)="toggle($event,'export')">Export<span class="caret"></span></a>
+				<ul class="dropdown-menu" *ngIf="showExport">						
+						<li>
+								<a [routerLink]="" (click)="exportData('client')">Organization</a>
+						</li>
+						<li>
+								<a [routerLink]="" (click)="exportData('recipient')">Recipient</a>
+						</li>
+						<li>
+								<a [routerLink]="" (click)="exportData('order')">Order</a>
+						</li>
+						<li>
+								<a [routerLink]="" (click)="exportData('item')">Item</a>
+						</li>						
+				</ul>
+			</li>
+			
+			<li><a routerLink="/placeorder" class={{isDisable}} >Cart <span class="badge" *ngIf="isCart">{{itemCount}}</span></a></li>
+
+
+
+			<li class="useravator dropdown open">
+				<a class="dropdown-toggle" data-toggle="dropdown" (click)="toggle($event,'user')"><span>{{userName}}&nbsp;&nbsp;</span>
+			<i class="material-icons">person</i><span class="caret"></span></a>
+				<ul class="dropdown-menu" *ngIf="showUser">						
+						<li>
+								<a href="/change-password">Change Password</a>
+						</li>	
+						<li>
+								<a (click)="logout()" routerLink="" routerLinkActive='active'>Logout</a>
+						</li>				
+				</ul>
+			</li>
+			<!--
+			<li ng-class="{'logout':1}">
+				<button class="homelogout_button" title="Logout" (click)="logout()"><i class="glyphicon glyphicon-off logout_icon"></i></button>
+			</li>
+		-->
+		</ul>
+	</div>
+</nav>

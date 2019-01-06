@@ -1,0 +1,385 @@
+<app-header></app-header>
+<div class="containerBG">
+  <div class="ContainerContent">
+    <div class="row">
+          <div class="col-lg-12 col-md-12 pull-left">
+              <h1 class="pageTitle">Import</h1>
+          </div>
+      </div>
+
+        <div class="row importPageContent p-40">
+            <div class="col-lg-12 col-md-12 importPageContentTabContainer">
+                <div class="upload-header">
+                    <ul (click)="selectTab($event)">
+                        <li id="1" [ngClass]="{'active':selectedTab == 1}">Step <span id="1">1</span></li>
+                        <li id="2" [ngClass]="{'active':selectedTab == 2}">Step <span id="2">2</span></li>
+                        <li id="3" [ngClass]="{'active':selectedTab == 3}">Step <span id="3">3</span></li>
+                    </ul>
+                </div>
+                <div class="upload-container">
+                    <div class="upload-content" *ngIf="selectedTab == 1">
+                        <h2 class="pageSubTitle">Upload</h2>
+                        <div class="content">
+                        <p>Upload an input file from the local filesystem.</p>
+                        <p style="text-decoration: underline;">Data file input guidelines</p>
+                            <ul>
+                                <li>To prevent accidental overwrite of other data columns, please upload minimum data
+                                    columns
+                                    you intend to update
+                                </li>
+                                <li>Always make sure you have the latest data before importing, otherwise, you may
+                                    inadvertedly
+                                    import stale data
+                                </li>
+                                <li>Date format must be mm/dd/yyyy, example - 08/21/2017</li>
+                                <li>The first row of the input data must be the column names</li>
+                                <li>Column names must match one of the supported data file layouts</li>
+                            </ul>
+                        </div>
+                        <div class="btn file-upload">
+                            <input class="file" [(ngModel)]="fileName" type="file" #fileImportInput name="File Upload"
+                                   id="txtFileUpload"
+                                   (change)="fileChangeListener($event)" accept=".csv"/>
+                        </div>
+                        <div>{{fileNameVal}}</div>
+                            <div class="alert alert-danger fade in col-lg-12" *ngIf="(!fileValidation)">
+                                <a (click)="closeMessage()" class="close" data-dismiss="alert">&times;</a>
+                                <span>
+                                    <i class="material-icons alert-danger">error</i> {{errorMessage}}
+                                </span>
+                            </div>
+                    </div>
+                    <div class="upload-content" *ngIf="selectedTab == 2">
+                        <h2 class="pageSubTitle">Validate</h2>
+                            <div class="content">
+                                <p>Upload an input file from the local filesystem.</p>
+                            </div>
+                            <div class="tableList" *ngIf="csvRecords.length > 0">
+                                <div class="scrollme">
+                                    <table class="table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th *ngFor="let header of headerListToDisplay;let i = index;" nowrap>
+                                                {{header | uppercase}}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let csvData of csvRecords | paginate: { itemsPerPage: 20, currentPage: p };let i = index;">
+                                            <td *ngFor="let header of headers;let i = index;">
+                                                <span>{{csvData[header]}}</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-0">
+                                <div *ngIf="csvRecords.length > 0">
+                                    <pagination-controls (pageChange)="p = $event" previousLabel=""
+                                                         nextLabel=""></pagination-controls>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="upload-content" *ngIf="selectedTab == 3" [class.loading]="showloader">
+                        <div class="modal1"></div>
+                        <h2 class="pageSubTitle" *ngIf="importResponse==''">Insert/Update</h2>
+                        <h2 class="pageSubTitle" *ngIf="importResponse != ''">Import Status</h2>
+                        <div class="content">
+                            <div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="errorExists">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" (click)="closeMessage()">X</button>
+                                        <h4 class="modal-title">Error Message</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                       <p><i class="material-icons alert-danger">error</i> Data import failed.
+                                        </p>
+                                      </div>
+                                      </div>
+                                  </div>
+                            </div>
+                            <div class="uploadFile" *ngIf="importResponse==''" >
+                                    
+                                    <input type="button" value="Upload" class="btn"
+                                           (click)="csvUpload()"  [disabled]="isDisabledFile ? true : null"/>
+                            </div>
+                            <div class="tableList" *ngIf="importResponse != ''">
+                                <div class="scrollme">
+                                    <table class="table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Error Rows</th>
+                                            <th>Inserted Rows</th>
+                                            <th>Updated Rows</th>
+                                            <th>Deleted Rows</th>
+                                            <th>Unchanged Rows</th>
+                                            <th>Unknown Rows</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <span>{{importResponse.error}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.inserted}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.updated}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.deleted}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.unchanged}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.unkonwn}}</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tableList" *ngIf="runTimeError != ''">
+                                <table class="table-striped" width="50%">
+                                        <thead>
+                                        <tr>
+                                            <th>Error Message</th>
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>{{runTimeError}}</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tableList" *ngIf="failureList.length > 0">
+                                <div class="scrollme">
+                                    <table class="table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th *ngFor="let header of headerListToDisplay;let i = index;" nowrap>
+                                                {{header | uppercase}}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let failure of failureList | paginate: { itemsPerPage: 20, currentPage: p };let i = index;">
+                                            <td *ngFor="let header of headers;let i = index;">
+                                                <span>{{failure[header]}}</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-0">
+                                <div *ngIf="failureList.length > 0">
+                                    <pagination-controls (pageChange)="p = $event" previousLabel=""
+                                                         nextLabel=""></pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--
+                <mat-tab-group (selectedIndexChange)="selectedIndexChange($event)" [selectedIndex]="selectedIndex">
+                    <mat-tab>
+                        <ng-template mat-tab-label>
+                            Upload
+                        </ng-template>
+                        <div id="Upload" class="tab-content">
+                            <span class="tabUploadContentLabel">Step 1: Upload an input file from the local filesystem.</span><br/>
+                            <span class="tabUploadContentLabel tabUploadLeftPadding">Data file input guidelines</span><br/>
+                            <ul class="tabUploadContentUL">
+                                <li>To prevent accidental overwrite of other data columns, please upload minimum data
+                                    columns
+                                    you intend to update
+                                </li>
+                                <li>Always make sure you have the latest data before importing, otherwise, you may
+                                    inadvertedly
+                                    import stale data
+                                </li>
+                                <li>Date format must be mm/dd/yyyy, ie. 08/21/2017</li>
+                                <li>The first row of the input data must be the column names</li>
+                                <li>Column names must match one of the supported data file layout</li>
+                            </ul>
+                            <br/>
+                            <div class="btn file-upload">
+                            <input class="file" [(ngModel)]="fileName" type="file" #fileImportInput name="File Upload"
+                                   id="txtFileUpload"
+                                   (change)="fileChangeListener($event)" accept=".csv"/>
+                            </div>
+                            <div>{{fileName}}</div>
+                            <div class="alert alert-danger fade in col-lg-12" *ngIf="(!fileValidation)">
+                                <a (click)="closeMessage()" class="close" data-dismiss="alert">&times;</a>
+                                <span>
+                                    <i class="material-icons alert-danger">error</i> {{errorMessage}}
+                                </span>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab [disabled]="tabDisplay">
+                        <ng-template mat-tab-label>
+                            Validating
+                        </ng-template>
+                        <div id="Validating" class="tab-content">
+                            <h3>Validating</h3>
+                            <span class="tabUploadContentLabel">Step 2: Upload an input file from the local filesystem.</span><br/>
+                            <div class="tableList" *ngIf="csvRecords.length > 0">
+                                <div class="scrollme">
+                                    <table class="table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th *ngFor="let header of headerListToDisplay;let i = index;" nowrap>
+                                                {{header | uppercase}}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let csvData of csvRecords | paginate: { itemsPerPage: 20, currentPage: p };let i = index;">
+                                            <td *ngFor="let header of headers;let i = index;">
+                                                <span>{{csvData[header]}}</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-0">
+                                <div *ngIf="csvRecords.length > 0">
+                                    <pagination-controls (pageChange)="p = $event" previousLabel=""
+                                                         nextLabel=""></pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab [disabled]="tabDisplay">
+                        <ng-template mat-tab-label>
+                            Insert/Update
+                        </ng-template>
+                        <div id="InsertOrUpdate" class="tab-content">
+                            <h3 *ngIf="importResponse==''">Insert/Update</h3>
+                            <h3 *ngIf="importResponse != ''">Import Status</h3>
+                            <div class="alert alert-success fade in col-lg-12" *ngIf="successMessageSaved">
+                                <a (click)="closeMessage()" class="close" data-dismiss="alert" (click)="closeMessage()">&times;</a>
+                                <span>
+                                    <i class="material-icons alert-success">check_circle</i> Data has been successfully imported.<br>
+                                </span>
+                            </div>
+                            <div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="errorExists">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" (click)="closeMessage()">X</button>
+                                        <h4 class="modal-title">Error Message</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                       <p><i class="material-icons alert-danger">error</i> Data import failed.
+                                        </p>
+                                      </div>
+                                      </div>
+                                  </div>
+                            </div>
+                            <div *ngIf="importResponse==''">
+                                <div class="text-left">
+                                    <input type="button" value="Upload" class="btn"
+                                           (click)="csvUpload()"/>
+                                </div>
+                            </div>
+                            <div class="tableList" *ngIf="importResponse != ''">
+                                <div class="scrollme">
+                                    <table class="table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Error Rows</th>
+                                            <th>Inserted Rows</th>
+                                            <th>Updated Rows</th>
+                                            <th>Deleted Rows</th>
+                                            <th>Unchanged Rows</th>
+                                            <th>Unknown Rows</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <span>{{importResponse.error}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.inserted}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.updated}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.deleted}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.unchanged}}</span>
+                                            </td>
+                                            <td>
+                                                <span>{{importResponse.unkonwn}}</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="tableList" *ngIf="failureList.length > 0">
+                                <div class="scrollme">
+                                    <table class="table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th *ngFor="let header of headerListToDisplay;let i = index;" nowrap>
+                                                {{header | uppercase}}
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let failure of failureList | paginate: { itemsPerPage: 20, currentPage: p };let i = index;">
+                                            <td *ngFor="let header of headers;let i = index;">
+                                                <span>{{failure[header]}}</span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="m-0">
+                                <div *ngIf="failureList.length > 0">
+                                    <pagination-controls (pageChange)="p = $event" previousLabel=""
+                                                         nextLabel=""></pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+                </mat-tab-group> -->
+            <div class="col-md-12 col-lg-12 nxtButton" *ngIf="selectedTab != 3">
+                <input type="button" [disabled]="isDisabledFile ? true : null" value="Next" class="btn pull-right nxt" (click)="clickMe()"/>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+ <div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessageSaved">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" (click)="closeMessage()">X</button>
+                                        <h4 class="modal-title">Success Message</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                       <p><i class="material-icons alert-success">check_circle</i> Data has been successfully imported.
+                                        </p>
+                                      </div>
+                                      </div>
+                                  </div>
+                            </div>
+
+<app-footer></app-footer>

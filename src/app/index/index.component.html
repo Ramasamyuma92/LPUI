@@ -1,0 +1,18 @@
+<body class="bg">
+<ng4-loading-spinner> </ng4-loading-spinner>
+	<div class="loginContainer">
+		<div class="loginContainerContent">
+			<form #loginForm="ngForm" (ngSubmit)="OnSubmit(Email.value,Password.value)">
+				<div *ngIf="isLoginError" class="red-text center error-message" style="color:red">
+				    Incorrect username or password
+				</div>
+				<input type="email" name="Email" #Email ngModel required placeholder="EMAIL ADDRESS" class="loginTextbox validate" /><br />
+				<input type="password" name="Password" #Password ngModel required minlength="3" placeholder="PASSWORD" class="loginTextbox validate" /><br />
+				<button [disabled]="!loginForm.valid" id="btnLogin" name="btnLogin" type="submit" class="btn btn-primary">Login</button>
+			<br /> <!--a href="#" class="linkForgotPassword">Forgot Password!</a-->
+				
+				<a routerLink='/forgot-password' class="linkForgotPassword pull-left" >Forgot Password!</a>
+			</form>
+		</div>
+	</div>
+</body>

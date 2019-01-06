@@ -1,0 +1,104 @@
+
+/*Create Employee*/
+.containerCreateEmployeeBG{
+    background-color:#F8F8F6;
+    display:flex;
+    justify-content:center;
+}
+
+.ContainerCreateEmployeeContent{
+    width:83%;
+}
+
+.createEmployeePageHeader{
+    padding:5px 0px 5px 0px;
+    border-bottom:solid 1px #D5D5D5;
+}
+
+.createEmployeePageHeaderRow{
+    padding-left:0px;
+}
+
+.createEmployeePageContent{
+     padding-top:20px;
+     margin-left: -30px;
+}
+
+.createEmployeePageContentRow{
+    padding-left:0px;
+}
+
+.createEmployeeLabel{
+    padding-left:0px;
+    font-size:15px;    
+    font-weight:normal; 
+    color:#3A3A3A;       
+}
+
+.createEmployeePageDropdown{
+    background-color:#FFF;
+    border: solid 1px #D5D5D5;
+    margin: 8px 5px 0px 0px;
+    padding: 5px 8px;
+    color: #D5D5D5;
+    font-size: 16px;
+    font-weight: normal;
+    width: 100%;
+    height:32px;
+}
+
+.createEmployeePageContent .txtLarge{
+    box-shadow: none;
+    border: solid 1px #D5D5D5;
+    background-color:#FFF;
+    font-size:16px;
+    font-weight: normal;
+    color: #15504e;
+    font-style: normal;  
+    padding: 4px 6px;
+    margin-top: 8px; 
+    width:100%; 
+    border-radius:0px;
+}
+
+
+.createEmployeeActionButtons{
+    text-align:right;
+    padding-top:30px;
+    padding-right:0px;
+    padding-bottom:30px;
+}
+
+.createEmployeeActionButtons .btnAction, .btnAction:hover{    
+    border-bottom:solid 4px #cbe9df;
+    background-color:#15504e;
+    color:#FFFFFF;
+    border-radius:0px;
+    height:50px;
+    width:140px;
+    font-size:16px;
+}
+
+.createEmployeePageContent .txtGroupIconRight{
+    position:relative;
+    width:100%;
+}
+
+.createEmployeePageContent .txtGroupIconRight .icoCalendar{
+    position:absolute;
+    padding:6px 8px 8px 10px;
+    pointer-events:none;
+    right:0;
+    font-size:18px;
+    color: #000; 
+    background-color:#EEEEEE; 
+    margin-right:1px;
+}
+
+.createOrganizationActionButtons{
+    text-align:right;
+    padding-top:30px;
+    padding-right:0px;
+    padding-bottom:30px;
+}
+/*End Create Employee*/

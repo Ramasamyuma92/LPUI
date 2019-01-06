@@ -1,0 +1,123 @@
+<app-header></app-header>
+<div class="containerBG">
+  <div class="ContainerContent">
+    <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12">
+              <h1 class="pageTitle">Create Product</h1>
+          </div>
+      </div>
+      <form [formGroup]="productForm" (ngSubmit)="addPost(productForm.value)" class="p-40" enctype='multipart/form-data'>
+
+
+      <div class="row createOrganizationPageContent">
+          <div class="col-lg-6 col-md-6">
+              <span class="createProductLabel">Item Code*</span>
+              <input type="text" class="txtLarge" placeholder="Item Code" formControlName="itemCode" />
+        <div *ngIf="productForm.controls.itemCode.invalid && productForm.controls.itemCode.touched" class="text-right text-danger">Item Code is required!</div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+              <span class="createProductLabel">Item Name*</span>
+              <input type="text" class="txtLarge" placeholder="Item Name" formControlName="name" />
+              <div *ngIf="productForm.controls.name.invalid && productForm.controls.name.touched" class="text-right text-danger">Item Name is required!</div>
+          </div>
+      </div>
+
+      <div class="row createOrganizationPageContent">
+          <div class="col-lg-6 col-md-6">
+              <span class="createProductLabel">Vendor Code*</span>
+              <input type="text" class="txtLarge" placeholder="Vendor Code" formControlName="vendorCode" />
+              <div *ngIf="productForm.controls.vendorCode.invalid && productForm.controls.vendorCode.touched" class="text-right text-danger">Vendor Code is required!</div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+              <span class="createProductLabel">Item Description</span>
+              <input type="text" class="txtLarge" placeholder="Item Description" formControlName="description" />
+          </div>          
+      </div>
+
+      <div class="row createOrganizationPageContent">
+          <div class="col-lg-3 col-md-3">
+              <span class="createProductLabel">Weight*</span>
+             <input type="number" class="txtLarge" placeholder="Weight" formControlName="weight" step="0.01"/>
+             <div *ngIf="productForm.controls.weight.invalid && productForm.controls.weight.touched" class="text-right text-danger">Weight is required and should be greater than zero!</div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+              <span class="createProductLabel">Upload Item Image*</span>
+          <input type="file" class="txtLarge" placeholder="file" formControlName="file" (change)="onFileChange($event)"/>
+          <div *ngIf="(productForm.controls.file.invalid || isInvalidImage) && productForm.controls.file.touched" class="text-right text-danger">
+            <span *ngIf="!isInvalidImage">Item Image is required!</span>
+            <span *ngIf="isInvalidImage">Image should be in JPG/GIF/JPEG</span>
+          </div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+              <span class="createProductLabel">Item Cost*</span>
+             <input type="number" class="txtLarge" placeholder="Item Cost" formControlName="cost" step="0.01"/>
+             <div *ngIf="productForm.controls.cost.invalid && productForm.controls.cost.touched" class="text-right text-danger">Item Cost is required and should be greater than or equal to zero!</div>
+          </div>
+          
+          <div class="col-lg-3 col-md-3">
+              <span class="createProductLabel">Item Price*</span>
+             <input type="number" class="txtLarge" placeholder="Item Price" formControlName="price" step="0.01" />
+             <div *ngIf="productForm.controls.price.invalid && productForm.controls.price.touched" class="text-right text-danger">Item Price is required and should be greater than or equal to zero!</div>
+          </div>
+          <div class="col-lg-3 col-md-3">
+              <span class="createProductLabel">Item Discount</span>
+             <input type="number" class="txtLarge" placeholder="Discount" (input)="onChangeDiscount($event.target.value)" formControlName="discount" step="0.01" />
+          </div>
+          
+      </div>
+
+      <div class="row createOrganizationPageContent">
+        <div class="col-lg-3 col-md-3">
+             <input type="checkbox" formControlName="sellable"/> Sellable
+          </div>
+          <!-- <div class="col-lg-3 col-md-3">
+              <input type="checkbox" placeholder="Item Code" formControlName="bom" (click)="onChange($event)" /> Bill of Material
+          </div> -->
+          
+          <!-- <div class="col-lg-6 col-md-6">
+            <span *ngIf="isBom">
+              <span class="createProductLabel">Parent Item Code*</span>
+              <input type="text" class="txtLarge" placeholder="Parent Item Code" formControlName="parentItemCode" />
+              <div *ngIf="(productForm.controls.parentItemCode.invalid && productForm.controls.parentItemCode.touched)" class="text-right text-danger">Parent Item Code is required!</div>
+            </span>
+          </div> -->
+      </div>  
+      <div class="row pull-right" style="padding-bottom: 20px;">
+          <div class="col-lg-12 col-md-12 createProductActionButtons">
+              <input type="button" value="CANCEL" class="btn btnAction" (click)="redirectToPreviousPage()" />
+              <input type="submit" value="SUBMIT" class="btn btnAction" />
+          </div>
+      </div>
+      </form>
+  </div>
+</div>
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="successMessageSaved">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="closeMessage()">X</button>
+            <h4 class="modal-title">Success Message</h4>
+          </div>
+          <div class="modal-body">
+            <p><i class="material-icons alert-success">check_circle</i> Product has been successfully created.
+              <a routerLink="/product">Click here</a> to redirect to previous page.
+            </p>
+          </div>
+          </div>
+      </div>
+</div>
+<div class="modal show alertMessage" id="myModal" role="dialog" *ngIf="errorExists">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" (click)="closeMessage()">X</button>
+            <h4 class="modal-title">Error Message</h4>
+          </div>
+          <div class="modal-body">
+            <p><i class="material-icons alert-danger">error</i> {{errorMessage}}
+            </p>
+          </div>
+          </div>
+      </div>
+</div>
+<app-footer></app-footer>
